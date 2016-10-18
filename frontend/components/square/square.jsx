@@ -24,15 +24,9 @@ class Square extends React.Component {
 
   render() {
 
-    let content;
-    if (!this.props.piece) {
-      content = "&#9813";
-    } else {
-      content = "";
-    }
     if (this.props.piece){
       return (
-        <li className={this.props.color + "-square " + this.props.piece.type}>
+        <li className={this.props.color + "-square" }>
           {String.fromCharCode(utfHash[this.props.piece.color + " " + this.props.piece.type])}
         </li>
       );

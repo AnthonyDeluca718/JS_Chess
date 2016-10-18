@@ -39,10 +39,10 @@ whitePieces.push( rook4 );
 
 //Knights
 let knight1 = new Piece("black","knight",[0,1]);
-board[[0,1]] = knight1;
+board[0][1] = knight1;
 blackPieces.push( knight1 );
 let knight2 = new Piece("black","knight",[0,6]);
-board[[0,6]] =knight2;
+board[0][6] =knight2;
 blackPieces.push( knight2 );
 let knight3 = new Piece("white","knight", [7,1]);
 board[7][1] =knight3;
