@@ -41,25 +41,23 @@ img {
   display: block;
   margin: 0 auto;
   margin-top: 80px;
-  width: 800px;
-  height: 800px;
+  width: 400px;
+  height: 400px;
 }
 
 .board li {
   display: block;
   float: left;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
 }
 
 .black-square {
   display: block;
   background: #ccc;
-  width: 100%;
 }
 
 .white-square {
   display: block;
   background: #F0F8FF;
-  width: 100%;
 }
