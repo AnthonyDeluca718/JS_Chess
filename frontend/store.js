@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 // const Reducer = require('./reducers/reducer');
-import BoardReducer from './reducers/board_reducer';
+import Reducer from './reducers/reducer';
 
 import merge from 'lodash/merge';
 import Piece from '../game/piece';
@@ -94,7 +94,7 @@ const middleWare = ()=>{
 
 const Store = (preloadedState = initialState) => (
   createStore(
-    BoardReducer,
+    Reducer,
     preloadedState
   )
 );
