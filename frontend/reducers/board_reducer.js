@@ -85,5 +85,4 @@ const BoardReducer = function(state = board, action) {
   }
 }
 
-
 export default BoardReducer;
