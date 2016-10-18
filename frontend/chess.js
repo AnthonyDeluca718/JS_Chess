@@ -8,7 +8,6 @@ import Modal from 'react-modal';
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
   Modal.setAppElement(document.body);
-  ReactDOM.render(<Root store={Store}/>, root);
+  let store = Store();
+  ReactDOM.render(<Root store={store}/>, root);
 });
-
-console.log("Hello world");

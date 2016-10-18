@@ -7,9 +7,8 @@ const middleWare = ()=>{
 
 const Store = (preloadedState = {}) => (
   createStore(
-    Reducer,
-    preloadedState,
-    middleWare
+    RootReducer,
+    preloadedState
   )
 );
 

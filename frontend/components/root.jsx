@@ -1,17 +1,13 @@
 import React from 'react';
+import BoardContainer from './board/board_container';
+import { Provider } from 'react-redux';
 
-class Root extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        YOLO
-      </div>
-    )
-  }
+const Root = ({store}) => {
+  return(
+    <Provider store={store}>
+      <BoardContainer />
+    </Provider >
+  )
 }
 
 export default Root;
