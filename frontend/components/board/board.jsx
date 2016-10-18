@@ -18,7 +18,7 @@ class Board extends React.Component {
           color = "black";
         }
         arr.push(
-          <Square color={color} key={8*i+j}/>
+          <Square color={color} key={8*i+j} pos={[i,j]} piece={this.props.board[i][j]}/>
         )
       }
     }

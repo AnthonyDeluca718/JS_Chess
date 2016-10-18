@@ -6,8 +6,18 @@ class Square extends React.Component {
   }
 
   render() {
+
+    let content;
+    if (!this.props.piece) {
+      content = "&#9813";
+    } else {
+      content = "";
+    }
+
     return (
-      <li className={this.props.color + "-square"}/>
+      <li className={this.props.color + "-square"}>
+        {String.fromCharCode(9818)}
+      </li>
     );
   }
 }
