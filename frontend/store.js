@@ -3,7 +3,7 @@ import { createStore } from 'redux';
 import Reducer from './reducers/reducer';
 
 import merge from 'lodash/merge';
-import Piece from '../game/piece';
+import Piece from './piece';
 
 let board = Array(8);
 for(let i=0; i< 8; i++) {

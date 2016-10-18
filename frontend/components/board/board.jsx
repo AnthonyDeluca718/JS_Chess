@@ -1,6 +1,6 @@
 import React from 'react';
 import Square from '../square/square';
-import Piece from '../../../game/piece';
+import Piece from '../../piece';
 
 
 class Board extends React.Component {
