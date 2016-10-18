@@ -63,3 +63,7 @@ img {
   display: block;
   background: #E0FFFF;
 }
+
+.board active-true {
+  background: #0c0;
+}
