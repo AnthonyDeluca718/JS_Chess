@@ -8,11 +8,11 @@ class Square extends React.Component {
   render() {
     if(this.props.color === "white") {
       return(
-        <div className="white-square"/>
+        <li className="white-square"/>
       );
     } else {
       return (
-        <div className="black-square" />
+        <li className="black-square"/>
       );
     }
   }
