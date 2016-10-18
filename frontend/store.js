@@ -85,7 +85,8 @@ let initialState = ({
   board: board,
   whitePieces: whitePieces,
   blackPieces: blackPieces,
-  currentPlayer: "white"
+  currentPlayer: "white",
+  moveBuffer: [],
 });
 
 const middleWare = ()=>{
