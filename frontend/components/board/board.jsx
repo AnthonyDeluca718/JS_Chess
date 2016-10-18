@@ -6,6 +6,13 @@ import Piece from '../../../game/piece';
 class Board extends React.Component {
   constructor(props) {
     super(props);
+    this.createDispatch = this.createDispatch.bind(this);
+  }
+
+  createDispatch(i,j) {
+    return (
+      () => this.props.sendPosition([i,j])
+    )
   }
 
   render() {
@@ -19,7 +26,7 @@ class Board extends React.Component {
           color = "black";
         }
         arr.push(
-          <Square color={color} key={8*i+j} pos={[i,j]} piece={this.props.board[i][j]}/>
+          <Square color={color} key={8*i+j} pos={[i,j]} piece={this.props.board[i][j]} dispatch={ this.createDispatch(i,j) } />
         )
       }
     }

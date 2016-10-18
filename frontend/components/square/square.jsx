@@ -26,7 +26,7 @@ class Square extends React.Component {
 
     if (this.props.piece){
       return (
-        <li className={this.props.color + "-square" }>
+        <li className={this.props.color + "-square" } onClick={this.props.dispatch}>
           {String.fromCharCode(utfHash[this.props.piece.color + " " + this.props.piece.type])}
         </li>
       );
