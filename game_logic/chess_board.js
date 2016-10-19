@@ -100,6 +100,41 @@ class ChessBoard {
     this.whitePieces = whitePieces;
     this.blackPieces = blackPieces;
   }
+
+  makePiece(color, pos, type) {
+    switch(type) {
+      case "king":
+      return new King(color, this, pos);
+      case "queen":
+      return new Queen(color, this, pos);
+      case "pawn":
+      return new Pawn(color, this, pos);
+      case "knight":
+      return new Knight(color, this, pos);
+      case "rook":
+      return new Rook(color, this, pos);
+      case "bishop":
+      return new Bishop(color, this, pos);
+    }
+  }
+
+  dup() {
+    newBoard = new ChessBoard();
+    const that = this;
+    this.whitePieces.concat(this.blackPieces).forEach( (piece)=>{
+      pos = piece.pos;
+      color = piece.color;
+      type = piece.type;
+      newPiece = that.makePiece(color, newBoard, type);
+      newBoard.board[pos[0]][pos[1]] = newPiece;
+      if (color === "white") {
+        newBoard.whitePieces.push(newPiece);
+      } else {
+        newBoard.blackPiece.push(newPiece);
+      }
+    });
+    return(newBoard);
+  }
 }
 
 module.exports = ChessBoard;
