@@ -7,9 +7,10 @@ class Queen extends Piece {
   }
 
   validMoves() {
+    const that = this;
     let output = [];
-    (this.hvDiff.concat(this.dDiff)).forEach( (diff)=> {
-      output = output.concat(this.moves(diff));
+    (this.hvDiff().concat(this.dDiff() )).forEach( (diff)=> {
+      output = output.concat(that.moves(diff));
     });
     return output;
   }

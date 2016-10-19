@@ -8,9 +8,10 @@ class Bishop extends Piece {
   }
 
   validMoves() {
+    const that = this;
     let output = [];
-    this.dDiff.forEach( (diff)=> {
-      output = output.concat(this.moves(diff));
+    this.dDiff().forEach( (diff)=> {
+      output = output.concat(that.moves(diff));
     });
     return output;
   }

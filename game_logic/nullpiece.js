@@ -2,6 +2,8 @@ class NullPiece {
 
   constructor() {
     this.color = null;
+    this.type = null;
+    this.pos = null;
   }
 
   deleteSelf() {

@@ -3,7 +3,7 @@ const moves = function(direct) {
   let dcol = direct[1];
   let output = [];
 
-  vect = [this.pos[0] + drow, this.pos[1] + dcol];
+  let vect = [this.pos[0] + drow, this.pos[1] + dcol];
 
   while(true) {
     if (!this.onBoard(vect)) {
@@ -11,7 +11,7 @@ const moves = function(direct) {
     }
 
     if (!this.board.get(vect).empty) {
-      if (this.board.get(vect).color === self.otherColor) {
+      if (this.board.get(vect).color === this.otherColor() ) {
         output.push(vect);
       }
       break;

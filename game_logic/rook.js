@@ -7,9 +7,10 @@ class Rook extends Piece {
   }
 
   validMoves() {
+    const that = this;
     let output = [];
-    this.hvDiff.forEach( (diff)=> {
-      output = output.concat(this.moves(diff));
+    this.hvDiff().forEach( (diff)=> {
+      output = output.concat(that.moves(diff));
     });
     return output;
   }

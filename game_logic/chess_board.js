@@ -261,3 +261,6 @@ class ChessBoard {
 }
 
 module.exports = ChessBoard;
+
+window.chessBoard = new ChessBoard();
+window.chessBoard.setUp();

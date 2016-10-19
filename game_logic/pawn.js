@@ -24,12 +24,14 @@ class Pawn extends Piece {
     let row = this.pos[0]
     let col = this.pos[1]
     let f = this.forward();
+
+    let passive;
     if (this.atStartRow() ) {
-      let passive = [[row+f,col],[row+2*f,col]];
+      passive = [[row+f,col],[row+2*f,col]];
     } else {
-      let passive = [[row+f,col]]
+      passive = [[row+f,col]]
     }
-    let agressive = [[row+f,col+1],[row+f,col-1]].filter( (pos) => {return that.board.get(pos).color = that.otherColor()} );
+    let agressive = [[row+f,col+1],[row+f,col-1]].filter( (pos) => {return that.board.get(pos).color === that.otherColor()} );
 
 
     return(

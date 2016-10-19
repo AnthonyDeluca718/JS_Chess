@@ -172,30 +172,30 @@ class Board
   #   self[start],self[finish] = NullPiece.new, piece
   #   piece.update_pos(finish)
   # end
-
-  def checkmate?(color) #not done
-
-    return false unless in_check?(color)
-
-    if color == :white
-      pieces =  @white_pieces
-    else
-      pieces = @black_pieces
-    end
-
-    pieces.each do |piece|
-      start = piece.pos
-      piece.valid_moves.each do |finish|
-        new_board = self.dup
-        new_board.test_move_pieces(start,finish)
-        unless new_board.in_check?(color)
-          # debugger
-          return false
-        end
-      end
-    end
-    true
-  end
+  #
+  # def checkmate?(color) #not done
+  #
+  #   return false unless in_check?(color)
+  #
+  #   if color == :white
+  #     pieces =  @white_pieces
+  #   else
+  #     pieces = @black_pieces
+  #   end
+  #
+  #   pieces.each do |piece|
+  #     start = piece.pos
+  #     piece.valid_moves.each do |finish|
+  #       new_board = self.dup
+  #       new_board.test_move_pieces(start,finish)
+  #       unless new_board.in_check?(color)
+  #         # debugger
+  #         return false
+  #       end
+  #     end
+  #   end
+  #   true
+  # end
 
   # def move_into_check(start,finish,color)
   #   new_board = self.dup
