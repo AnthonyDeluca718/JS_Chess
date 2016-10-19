@@ -6,6 +6,19 @@ const Rook = require('./rook.js');
 const Queen = require('./queen.js');
 const King = require('./king.js');
 
+Array.prototpe.has = function(el) {
+
+  stringEl = JSON.stringify(el);
+
+  for(let i=0; i< this.length; i++) {
+    if(JSON.stringify(this[i]) ==== stringEl) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 class ChessBoard {
   constructor() {
     this.whitePieces = [];
@@ -134,6 +147,68 @@ class ChessBoard {
       }
     });
     return(newBoard);
+  }
+
+  movePiece(start, finish, color) {
+    const that=this;
+    piece = this.get(start);
+
+    if (!piece.validMoves.has(finish)) {
+      alert("illegal move");
+      return ;
+    } else if (this.moveIntoCheck(start, finish, color)) {
+      alert("You can't move into check");
+      return ;
+    }
+
+    wInd = this.whitePieces.indexOf(that.get(finish));
+    bInd = this.blackPieces.indexOf(that.get(finish));
+
+    if (wInd >= 0) {
+      this.whitePieces.deleteAt(wInd);
+    }
+    if (bInd >= 0) {
+      this.blackPieces.deleteAt(bInd);
+    }
+
+    let temp = this.get(start);
+    this.board[start[0]][start[1]] = this.get(finish);
+    this.board[finish[0]][finish[1]] = temp;
+    piece.updatePos(finish);
+  }
+
+  testMove(start,end) {
+    const that=this;
+    piece = this.get(start);
+
+    wInd = this.whitePieces.indexOf(that.get(finish));
+    bInd = this.blackPieces.indexOf(that.get(finish));
+
+    if (wInd >= 0) {
+      this.whitePieces.deleteAt(wInd);
+    }
+    if (bInd >= 0) {
+      this.blackPieces.deleteAt(bInd);
+    }
+
+    let temp = this.get(start);
+    this.board[start[0]][start[1]] = this.get(finish);
+    this.board[finish[0]][finish[1]] = temp;
+    piece.updatePos(finish);
+  }
+
+  findKing(color) {
+    let pieces;
+    if (color === "black") {
+      pieces = this.blackPieces;
+    } else {
+      pieces = this.whitePieces;
+    }
+    pieces.forEach( (piece)=>{
+      if (piece.type === "king" && piece.color === color) {
+        return piece;
+      }
+    })
   }
 }
 

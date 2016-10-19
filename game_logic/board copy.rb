@@ -220,12 +220,12 @@ class Board
     false
   end
 
-  def find_king(color)
-    @grid.each do |row|
-      row.each do |piece|
-        return piece.pos if piece.color == color && piece.sym == :K
-      end
-    end
-  end
+  # def find_king(color)
+  #   @grid.each do |row|
+  #     row.each do |piece|
+  #       return piece.pos if piece.color == color && piece.sym == :K
+  #     end
+  #   end
+  # end
 
 end
