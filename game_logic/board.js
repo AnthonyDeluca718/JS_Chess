@@ -13,7 +13,7 @@ class Board {
     this.blackPieces = [];
     this.board = Array(8);
     for(let i=0; i< 8; i++) {
-      this.board[i] = Array(8).map(function() { return new NullPiece() });
+      this.board[i] = Array(8).fill(0).map(function() { return new NullPiece() });
     }
   }
 

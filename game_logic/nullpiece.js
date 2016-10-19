@@ -16,3 +16,5 @@ class NullPiece {
     return [];
   }
 }
+
+module.exports = NullPiece;
