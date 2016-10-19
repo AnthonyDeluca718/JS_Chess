@@ -6,12 +6,12 @@ const Rook = require('./rook.js');
 const Queen = require('./queen.js');
 const King = require('./king.js');
 
-Array.prototpe.has = function(el) {
+Array.prototype.has = function(el) {
 
   stringEl = JSON.stringify(el);
 
   for(let i=0; i< this.length; i++) {
-    if(JSON.stringify(this[i]) ==== stringEl) {
+    if(JSON.stringify(this[i]) === stringEl) {
       return true;
     }
   }
@@ -147,6 +147,23 @@ class ChessBoard {
       }
     });
     return(newBoard);
+  }
+
+  inCheck(color) {
+    let peices;
+    if (color === "white") {
+      pieces = this.blackPieces;
+    } else {
+      pieces = this.whitePieces;
+    }
+
+    kingPos = this.findKing(color);
+
+    pieces.forEach((piece) =>{
+      if (piece.validMoves.has(kingPos)) {
+        return true;
+      }
+    });
   }
 
   movePiece(start, finish, color) {
