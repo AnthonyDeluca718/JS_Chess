@@ -6,15 +6,20 @@ const Rook = require('./rook.js');
 const Queen = require('./queen.js');
 const King = require('./king.js');
 
-class Board {
+class ChessBoard {
   constructor() {
-    //set up
     this.whitePieces = [];
     this.blackPieces = [];
     this.board = Array(8);
     for(let i=0; i< 8; i++) {
       this.board[i] = Array(8).fill(0).map(function() { return new NullPiece() });
     }
+  }
+
+  get(pos) {
+    return(
+      this.board[pos[0]][pos[1]]
+    );
   }
 
   setUp() {
@@ -97,8 +102,4 @@ class Board {
   }
 }
 
-module.exports = Board;
-
-board = new Board();
-board.setUp();
-console.log(board);
+module.exports = ChessBoard;

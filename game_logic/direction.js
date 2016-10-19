@@ -10,8 +10,8 @@ const moves = function(direct) {
       break;
     }
 
-    if (!this.board[vect].empty) {
-      if (this.board[vect].color == self.otherColor) {
+    if (!this.board.get(vect).empty) {
+      if (this.board.get(vect).color === self.otherColor) {
         output.push(vect);
       }
       break;

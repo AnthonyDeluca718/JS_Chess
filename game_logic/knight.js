@@ -22,7 +22,7 @@ class Knight extends Piece {
     return(
       possibleMoves.filter( e=> {
         return(
-          onBoard(e) && this.board[e].color != this.color
+          onBoard(e) && this.board.get(e).color != this.color
         );
       })
     );

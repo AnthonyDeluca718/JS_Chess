@@ -1,9 +1,9 @@
 class Piece {
-  constructor(color, board, pos, sym) {
+  constructor(color, board, pos, type) {
     this.color = color;
     this.board = board;
     this.pos = pos;
-    this.sym = sym;
+    this.sym = type;
   }
 
   otherColor() {
@@ -28,13 +28,14 @@ class Piece {
     );
   }
 
-  // hvDiff() {
-  //   return [ [-1,0],[1,0],[[0,1],[0,-1] ]
-  // }
-
   dDiff() {
     return(
       [[1,1],[-1,-1],[1,-1],[-1,1]]
+    );
+  }
+  hvDiff() {
+    return(
+      [[-1,0],[1,0],[0,1],[0,-1]]
     );
   }
 }
