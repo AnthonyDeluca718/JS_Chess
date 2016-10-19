@@ -150,7 +150,7 @@ class ChessBoard {
   }
 
   inCheck(color) {
-    let peices;
+    let pieces;
     if (color === "white") {
       pieces = this.blackPieces;
     } else {
@@ -164,6 +164,37 @@ class ChessBoard {
         return true;
       }
     });
+  }
+
+  moveIntoCheck(start, finish, color) {
+    newBoard = this.dup();
+    newBoard.testMove(start, finish);
+    return newBoard.inCheck(color);
+  }
+
+  checkmate(color) {
+    const that = this;
+    if (!this.inCheck(color)) {
+      return false;
+    }
+
+    let pieces;
+    if (color === "white") {
+      pieces = this.whitePieces;
+    } else {
+      pieces = this.blackPieces;
+    }
+
+    pieces.forEach( (piece) => {
+      start = piece.pos;
+      piece.validMoves.forEach((end) => {
+        if (!that.inCheck(color)) {
+          return false;
+        }
+      })
+    })
+
+    return true;
   }
 
   movePiece(start, finish, color) {

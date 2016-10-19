@@ -197,28 +197,28 @@ class Board
     true
   end
 
-  def move_into_check(start,finish,color)
-    new_board = self.dup
-    # debugger
-    new_board.test_move_pieces(start,finish)
-    new_board.in_check?(color)
-  end
+  # def move_into_check(start,finish,color)
+  #   new_board = self.dup
+  #   # debugger
+  #   new_board.test_move_pieces(start,finish)
+  #   new_board.in_check?(color)
+  # end
 
-  def in_check?(color)
-    if color == :white
-      pieces =  @black_pieces
-    else
-      pieces = @white_pieces
-    end
-
-    king_pos = find_king(color)
-    pieces.each do |piece|
-      if piece.valid_moves.include?(king_pos)
-        return true
-      end
-    end
-    false
-  end
+  # def in_check?(color)
+  #   if color == :white
+  #     pieces =  @black_pieces
+  #   else
+  #     pieces = @white_pieces
+  #   end
+  #
+  #   king_pos = find_king(color)
+  #   pieces.each do |piece|
+  #     if piece.valid_moves.include?(king_pos)
+  #       return true
+  #     end
+  #   end
+  #   false
+  # end
 
   # def find_king(color)
   #   @grid.each do |row|
