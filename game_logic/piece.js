@@ -3,7 +3,7 @@ class Piece {
     this.color = color;
     this.board = board;
     this.pos = pos;
-    this.sym = type;
+    this.type = type;
   }
 
   otherColor() {
