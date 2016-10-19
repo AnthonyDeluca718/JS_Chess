@@ -8,7 +8,7 @@ const King = require('./king.js');
 
 Array.prototype.has = function(el) {
 
-  stringEl = JSON.stringify(el);
+  let stringEl = JSON.stringify(el);
 
   for(let i=0; i< this.length; i++) {
     if(JSON.stringify(this[i]) === stringEl) {
@@ -134,6 +134,9 @@ class ChessBoard {
   dup() {
     newBoard = new ChessBoard();
     const that = this;
+
+    let pos, color, type, newPiece;
+
     this.whitePieces.concat(this.blackPieces).forEach( (piece)=>{
       pos = piece.pos;
       color = piece.color;
@@ -157,7 +160,7 @@ class ChessBoard {
       pieces = this.whitePieces;
     }
 
-    kingPos = this.findKing(color);
+    let kingPos = this.findKing(color);
 
     pieces.forEach((piece) =>{
       if (piece.validMoves.has(kingPos)) {
@@ -167,7 +170,7 @@ class ChessBoard {
   }
 
   moveIntoCheck(start, finish, color) {
-    newBoard = this.dup();
+    let newBoard = this.dup();
     newBoard.testMove(start, finish);
     return newBoard.inCheck(color);
   }
@@ -186,7 +189,7 @@ class ChessBoard {
     }
 
     pieces.forEach( (piece) => {
-      start = piece.pos;
+      let start = piece.pos;
       piece.validMoves.forEach((end) => {
         if (!that.inCheck(color)) {
           return false;
@@ -199,7 +202,7 @@ class ChessBoard {
 
   movePiece(start, finish, color) {
     const that=this;
-    piece = this.get(start);
+    let piece = this.get(start);
 
     if (!piece.validMoves.has(finish)) {
       alert("illegal move");
@@ -209,8 +212,8 @@ class ChessBoard {
       return ;
     }
 
-    wInd = this.whitePieces.indexOf(that.get(finish));
-    bInd = this.blackPieces.indexOf(that.get(finish));
+    let wInd = this.whitePieces.indexOf(that.get(finish));
+    let bInd = this.blackPieces.indexOf(that.get(finish));
 
     if (wInd >= 0) {
       this.whitePieces.deleteAt(wInd);
@@ -227,10 +230,10 @@ class ChessBoard {
 
   testMove(start,end) {
     const that=this;
-    piece = this.get(start);
+    let piece = this.get(start);
 
-    wInd = this.whitePieces.indexOf(that.get(finish));
-    bInd = this.blackPieces.indexOf(that.get(finish));
+    let wInd = this.whitePieces.indexOf(that.get(finish));
+    let bInd = this.blackPieces.indexOf(that.get(finish));
 
     if (wInd >= 0) {
       this.whitePieces.deleteAt(wInd);
