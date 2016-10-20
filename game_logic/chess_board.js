@@ -162,6 +162,7 @@ class ChessBoard {
 
     for (let i=0; i < pieces.length; i++) {
       if (pieces[i].validMoves().has(kingPos)) {
+        console.log(pieces[i]);
         return true;
       }
     }
@@ -207,9 +208,11 @@ class ChessBoard {
     let piece = this.get(start);
 
     if (!piece.validMoves().has(finish)) {
+      debugger
       alert("illegal move");
       return ;
     } else if (this.moveIntoCheck(start, finish, color)) {
+      debugger
       alert("You can't move into check");
       return ;
     }
@@ -217,14 +220,14 @@ class ChessBoard {
     let bInd = this.blackPieces.indexOf(that.get(finish));
 
     if (wInd >= 0) {
-      this.whitePieces.deleteAt(wInd);
+      this.whitePieces.splice(wInd,1);
     }
     if (bInd >= 0) {
-      this.blackPieces.deleteAt(bInd);
+      this.blackPieces.splice(bInd,1);
     }
-    let temp = this.get(start);
-    this.board[start[0]][start[1]] = this.get(finish);
-    this.board[finish[0]][finish[1]] = temp;
+
+    this.board[finish[0]][finish[1]] = piece;
+    this.board[start[0]][start[1]] = new NullPiece();
     piece.updatePos(finish);
   }
 
@@ -236,15 +239,14 @@ class ChessBoard {
     let bInd = this.blackPieces.indexOf(that.get(finish));
 
     if (wInd >= 0) {
-      this.whitePieces.deleteAt(wInd);
+      this.whitePieces.splice(wInd, 1);
     }
     if (bInd >= 0) {
-      this.blackPieces.deleteAt(bInd);
+      this.blackPieces.splice(bInd, 1);
     }
 
-    let temp = this.get(start);
-    this.board[start[0]][start[1]] = this.get(finish);
-    this.board[finish[0]][finish[1]] = temp;
+    this.board[finish[0]][finish[1]] = piece;
+    this.board[start[0]][start[1]] = new NullPiece();
     piece.updatePos(finish);
   }
 

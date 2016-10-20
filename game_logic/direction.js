@@ -5,23 +5,21 @@ const moves = function(direct) {
 
   let vect = [this.pos[0] + drow, this.pos[1] + dcol];
 
-  while(true) {
+  let bool = true;
+  while(bool) {
     if (!this.onBoard(vect)) {
-      break;
-    }
-
-    if (!this.board.get(vect).empty) {
+      bool = false;
+    } else if (!this.board.get(vect).empty()) {
       if (this.board.get(vect).color === this.otherColor() ) {
         output.push(vect);
       }
-      break;
+      bool = false;
     } else {
       output.push(vect);
       vect = [vect[0]+drow,vect[1]+dcol];
     }
-
-    return output;
   }
+  return output;
 }
 
 module.exports = moves;
