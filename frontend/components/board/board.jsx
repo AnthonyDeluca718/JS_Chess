@@ -2,6 +2,17 @@ import React from 'react';
 import Square from '../square/square';
 import Piece from '../../piece';
 
+Array.prototype.has = function(el) {
+  let stringEl = JSON.stringify(el);
+
+  for(let i=0; i< this.length; i++) {
+    if(JSON.stringify(this[i]) === stringEl) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 class Board extends React.Component {
   constructor(props) {
@@ -26,7 +37,7 @@ class Board extends React.Component {
           color = "black";
         }
 
-        if (this.props.activeSquares[i.toString() + j.toString()]) {
+        if (this.props.activeSquares.has([i,j]) ) {
           active = "active";
         } else {
           active = "";

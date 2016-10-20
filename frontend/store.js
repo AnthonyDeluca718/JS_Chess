@@ -15,7 +15,7 @@ let initialState = ({
   blackPieces: chessBoard.blackPieces,
   currentPlayer: "white",
   moveBuffer: [],
-  activeSquares: {"00": true, "55": true}
+  activeSquares: []
 });
 
 const middleWare = ()=>{
