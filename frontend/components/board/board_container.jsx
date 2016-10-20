@@ -4,7 +4,7 @@ import Board from './board';
 
 const mapStateToProps = (state) => {
   return({
-    board: state.board,
+    board: state.chessBoard.board,
     currentPlayer: state.currentPlayer,
     activeSquares: state.activeSquares
   })
