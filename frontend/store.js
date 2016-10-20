@@ -14,7 +14,7 @@ let initialState = ({
   whitePieces: chessBoard.whitePieces,
   blackPieces: chessBoard.blackPieces,
   currentPlayer: "white",
-  moveBuffer: [],
+  moveBuffer: null,
   activeSquares: []
 });
 

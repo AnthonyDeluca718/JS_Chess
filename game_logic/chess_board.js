@@ -210,11 +210,11 @@ class ChessBoard {
     if (!piece.validMoves().has(finish)) {
       debugger
       alert("illegal move");
-      return ;
+      return -1;
     } else if (this.moveIntoCheck(start, finish, color)) {
       debugger
       alert("You can't move into check");
-      return ;
+      return -1;
     }
     let wInd = this.whitePieces.indexOf(that.get(finish));
     let bInd = this.blackPieces.indexOf(that.get(finish));
@@ -229,6 +229,7 @@ class ChessBoard {
     this.board[finish[0]][finish[1]] = piece;
     this.board[start[0]][start[1]] = new NullPiece();
     piece.updatePos(finish);
+    return 1;
   }
 
   testMove(start,finish) {

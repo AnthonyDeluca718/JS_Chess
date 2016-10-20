@@ -1,22 +1,51 @@
 import merge from 'lodash/merge';
 
+
+Array.prototype.has = function(el) {
+  let stringEl = JSON.stringify(el);
+
+  for(let i=0; i< this.length; i++) {
+    if(JSON.stringify(this[i]) === stringEl) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 const Reducer = function(state, action) {
   switch(action.type) {
     case "RECEIVE_POSITION":
       let oldState = merge({},state);
+      let pos = action.pos;
+      let chessBoard = oldState.chessBoard;
+      let currentPlayer = oldState.currentPlayer;
+      let pieces;
 
-      if(oldState.moveBuffer.length === 0) {
-        oldState.moveBuffer.push(action.pos);
-        oldState.activeSquares = oldState.chessBoard.get(action.pos).validMoves();
+      if (currentPlayer === "white") {
+        pieces = chessBoard.whitePieces;
       } else {
-        let res = oldState.chessBoard.movePiece(oldState.moveBuffer[0], action.pos, oldState.currentPlayer);
-        oldState.moveBuffer = [];
-        oldState.board = chessBoard.board;
-        oldState.activeSquares = [];
-        if (oldState.currentPlayer === "white") {
-          oldState.currentPlayer = "black";
-        } else {
-          oldState.currentPlayer = "white";
+        pieces = chessBoard.blackPieces;
+      }
+
+      //Handling logic
+
+      if (pieces.map( (piece) => {return(piece.pos)}).has(pos) ) {
+        oldState.moveBuffer = pos;
+        oldState.activeSquares = chessBoard.get(pos).validMoves();
+      } else if(oldState.moveBuffer === null) {
+        return oldState;
+      } else {
+        let res = chessBoard.movePiece(oldState.moveBuffer, action.pos, oldState.currentPlayer);
+        if (res === 1) {
+          oldState.moveBuffer = null;
+          oldState.board = chessBoard.board;
+          oldState.activeSquares = [];
+          if (currentPlayer === "white") {
+            oldState.currentPlayer = "black";
+          } else {
+            oldState.currentPlayer = "white";
+          }
         }
       }
       return oldState;
