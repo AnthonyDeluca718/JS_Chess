@@ -4,6 +4,7 @@ const Piece = require('./piece.js');
 class Queen extends Piece {
   constructor(color, board, pos) {
     super(color, board, pos, "rook");
+    this.moves = require('./direction.js');
   }
 
   validMoves() {

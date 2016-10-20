@@ -7,7 +7,6 @@ const Queen = require('./queen.js');
 const King = require('./king.js');
 
 Array.prototype.has = function(el) {
-
   let stringEl = JSON.stringify(el);
 
   for(let i=0; i< this.length; i++) {
@@ -159,7 +158,7 @@ class ChessBoard {
       pieces = this.whitePieces;
     }
 
-    let kingPos = this.findKing(color);
+    let kingPos = this.findKing(color).pos;
 
     for (let i=0; i < pieces.length; i++) {
       if (pieces[i].validMoves().has(kingPos)) {

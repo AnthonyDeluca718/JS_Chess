@@ -7,9 +7,10 @@ class King extends Piece {
   }
 
   validMoves() {
+    const that = this;
     let row = this.pos[0]
     let col = this.pos[1]
-    let possible_moves = [
+    let possibleMoves = [
       [row+1, col],
       [row+1, col+1],
       [row+1, col-1],
@@ -23,7 +24,7 @@ class King extends Piece {
     return(
       possibleMoves.filter( e=> {
         return(
-          onBoard(e) && this.board.get(e).color != this.color
+          that.onBoard(e) && this.board.get(e).color != this.color
         );
       })
     );

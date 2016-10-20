@@ -6,6 +6,8 @@ class Knight extends Piece {
   }
 
   validMoves() {
+    const that = this;
+
     let row = this.pos[0];
     let col = this.pos[1];
     let possibleMoves = [
@@ -22,7 +24,7 @@ class Knight extends Piece {
     return(
       possibleMoves.filter( e=> {
         return(
-          onBoard(e) && this.board.get(e).color != this.color
+          that.onBoard(e) && this.board.get(e).color != this.color
         );
       })
     );

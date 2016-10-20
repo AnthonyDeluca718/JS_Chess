@@ -1,9 +1,10 @@
-const moves = require('./direction.js');
+
 const Piece = require('./piece.js');
 
 class Rook extends Piece {
   constructor(color, board, pos) {
     super(color, board, pos, "rook");
+    this.moves = require('./direction.js');
   }
 
   validMoves() {
