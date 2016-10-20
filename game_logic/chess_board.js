@@ -132,8 +132,7 @@ class ChessBoard {
   }
 
   dup() {
-    newBoard = new ChessBoard();
-    const that = this;
+    let newBoard = new ChessBoard();
 
     let pos, color, type, newPiece;
 
@@ -141,12 +140,12 @@ class ChessBoard {
       pos = piece.pos;
       color = piece.color;
       type = piece.type;
-      newPiece = that.makePiece(color, newBoard, type);
+      newPiece = newBoard.makePiece(color, pos, type);
       newBoard.board[pos[0]][pos[1]] = newPiece;
       if (color === "white") {
         newBoard.whitePieces.push(newPiece);
       } else {
-        newBoard.blackPiece.push(newPiece);
+        newBoard.blackPieces.push(newPiece);
       }
     });
     return(newBoard);
@@ -162,11 +161,12 @@ class ChessBoard {
 
     let kingPos = this.findKing(color);
 
-    pieces.forEach((piece) =>{
-      if (piece.validMoves.has(kingPos)) {
+    for (let i=0; i < pieces.length; i++) {
+      if (pieces[i].validMoves().has(kingPos)) {
         return true;
       }
-    });
+    }
+    return false;
   }
 
   moveIntoCheck(start, finish, color) {
@@ -188,14 +188,17 @@ class ChessBoard {
       pieces = this.blackPieces;
     }
 
-    pieces.forEach( (piece) => {
+    for(let i=0; i<pieces.length; i++){
+      let piece = pieces[i];
+      let moves = piece.validMoves();
       let start = piece.pos;
-      piece.validMoves.forEach((end) => {
-        if (!that.inCheck(color)) {
+
+      for(let j=0; j<moves.length; j++) {
+        if( !that.moveIntoCheck(start, moves[j], color) ) {
           return false;
         }
-      })
-    })
+      }
+    }
 
     return true;
   }
@@ -204,14 +207,13 @@ class ChessBoard {
     const that=this;
     let piece = this.get(start);
 
-    if (!piece.validMoves.has(finish)) {
+    if (!piece.validMoves().has(finish)) {
       alert("illegal move");
       return ;
     } else if (this.moveIntoCheck(start, finish, color)) {
       alert("You can't move into check");
       return ;
     }
-
     let wInd = this.whitePieces.indexOf(that.get(finish));
     let bInd = this.blackPieces.indexOf(that.get(finish));
 
@@ -221,14 +223,13 @@ class ChessBoard {
     if (bInd >= 0) {
       this.blackPieces.deleteAt(bInd);
     }
-
     let temp = this.get(start);
     this.board[start[0]][start[1]] = this.get(finish);
     this.board[finish[0]][finish[1]] = temp;
     piece.updatePos(finish);
   }
 
-  testMove(start,end) {
+  testMove(start,finish) {
     const that=this;
     let piece = this.get(start);
 
@@ -255,11 +256,13 @@ class ChessBoard {
     } else {
       pieces = this.whitePieces;
     }
-    pieces.forEach( (piece)=>{
+
+    for(let i=0; i< pieces.length; i++) {
+      let piece = pieces[i];
       if (piece.type === "king" && piece.color === color) {
         return piece;
       }
-    })
+    }
   }
 }
 

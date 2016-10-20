@@ -31,11 +31,14 @@ class Pawn extends Piece {
     } else {
       passive = [[row+f,col]]
     }
-    let agressive = [[row+f,col+1],[row+f,col-1]].filter( (pos) => {return that.board.get(pos).color === that.otherColor()} );
-
+    let agressive = [[row+f,col+1],[row+f,col-1]];
 
     return(
-      agressive.concat(passive.filter((pos)=>{return that.board.get(pos).empty()}))
+      agressive.filter( (pos) => {
+        return ( that.onBoard(pos) && (that.board.get(pos).color === that.otherColor()) );
+      }).concat(passive.filter(
+        (pos)=>{return that.board.get(pos).empty()})
+      )
     );
   }
 }
