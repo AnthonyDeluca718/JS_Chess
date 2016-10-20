@@ -11,6 +11,11 @@ const Reducer = function(state, action) {
         oldState.chessBoard.movePiece(oldState.moveBuffer[0], action.pos, oldState.currentPlayer);
         oldState.moveBuffer = [];
         oldState.board = chessBoard.board;
+        if (oldState.currentPlayer === "white") {
+          oldState.currentPlayer = "black";
+        } else {
+          oldState.currentPlayer = "white";
+        }
       }
       return oldState;
     default:

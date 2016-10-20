@@ -3,7 +3,7 @@ const Piece = require('./piece.js');
 
 class Queen extends Piece {
   constructor(color, board, pos) {
-    super(color, board, pos, "rook");
+    super(color, board, pos, "queen");
     this.moves = require('./direction.js');
   }
 
