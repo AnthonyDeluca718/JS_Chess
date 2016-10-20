@@ -1,10 +1,8 @@
-const moves = require('./direction.js');
 const Piece = require('./piece.js');
 
 class Queen extends Piece {
   constructor(color, board, pos) {
     super(color, board, pos, "queen");
-    this.moves = require('./direction.js');
   }
 
   validMoves() {
@@ -16,6 +14,8 @@ class Queen extends Piece {
     return output;
   }
 }
+
+Queen.prototype.moves = require('./direction.js');
 
 
 

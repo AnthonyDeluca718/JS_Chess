@@ -4,7 +4,6 @@ class Bishop extends Piece {
 
   constructor(color, board, pos) {
     super(color, board, pos, 'bishop');
-    this.moves = require('./direction.js');
   }
 
   validMoves() {
@@ -16,5 +15,7 @@ class Bishop extends Piece {
     return output;
   }
 }
+
+Bishop.prototype.moves = require('./direction.js');
 
 module.exports = Bishop;

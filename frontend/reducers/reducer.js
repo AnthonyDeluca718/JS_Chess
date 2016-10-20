@@ -9,7 +9,7 @@ const Reducer = function(state, action) {
         oldState.moveBuffer.push(action.pos);
         oldState.activeSquares = oldState.chessBoard.get(action.pos).validMoves();
       } else {
-        oldState.chessBoard.movePiece(oldState.moveBuffer[0], action.pos, oldState.currentPlayer);
+        let res = oldState.chessBoard.movePiece(oldState.moveBuffer[0], action.pos, oldState.currentPlayer);
         oldState.moveBuffer = [];
         oldState.board = chessBoard.board;
         oldState.activeSquares = [];

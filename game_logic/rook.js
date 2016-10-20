@@ -4,7 +4,6 @@ const Piece = require('./piece.js');
 class Rook extends Piece {
   constructor(color, board, pos) {
     super(color, board, pos, "rook");
-    this.moves = require('./direction.js');
   }
 
   validMoves() {
@@ -16,5 +15,7 @@ class Rook extends Piece {
     return output;
   }
 }
+
+Rook.prototype.moves = require('./direction.js');
 
 module.exports = Rook;
