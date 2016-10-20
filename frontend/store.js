@@ -10,12 +10,12 @@ chessBoard.setUp();
 
 let initialState = ({
   chessBoard: chessBoard,
-  board: chessBoard.board,
   whitePieces: chessBoard.whitePieces,
   blackPieces: chessBoard.blackPieces,
   currentPlayer: "white",
   moveBuffer: null,
-  activeSquares: []
+  activeSquares: [],
+  checkmate: false
 });
 
 const middleWare = ()=>{

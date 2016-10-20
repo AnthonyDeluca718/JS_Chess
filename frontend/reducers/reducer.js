@@ -39,12 +39,14 @@ const Reducer = function(state, action) {
         let res = chessBoard.movePiece(oldState.moveBuffer, action.pos, oldState.currentPlayer);
         if (res === 1) {
           oldState.moveBuffer = null;
-          oldState.board = chessBoard.board;
           oldState.activeSquares = [];
           if (currentPlayer === "white") {
             oldState.currentPlayer = "black";
           } else {
             oldState.currentPlayer = "white";
+          }
+          if (chessBoard.checkmate(oldState.currentPlayer)) {
+            oldState.checkmate = true;
           }
         }
       }

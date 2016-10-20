@@ -6,6 +6,7 @@ import Greeting from './greeting';
 const mapStateToProps = (state) => {
   return({
     currentPlayer: state.currentPlayer,
+    checkmate: state.checkmate
   })
 };
 

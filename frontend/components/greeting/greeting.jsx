@@ -10,6 +10,9 @@ class Greeting extends React.Component {
     return(
       <div className="greeting" >
         {"Current Player: " + this.props.currentPlayer}
+        <br/>
+        {"checkmate: " + this.props.checkmate}
+
       </div>
     )
   }
