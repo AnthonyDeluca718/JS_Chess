@@ -15,7 +15,8 @@ let initialState = ({
   currentPlayer: "white",
   moveBuffer: null,
   activeSquare: null,
-  checkmate: false
+  checkmate: false,
+  errors: ""
 });
 
 const middleWare = ()=>{

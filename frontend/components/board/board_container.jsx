@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
   return({
     board: state.chessBoard.board,
     currentPlayer: state.currentPlayer,
-    activeSquare: state.activeSquare
+    activeSquare: state.activeSquare,
+    errors: state.errors
   })
 };
 
@@ -16,6 +17,9 @@ const mapDispatchToProps = function(dispatch, ownProps) {
     sendPosition: (pos) => dispatch({
       type: "RECEIVE_POSITION",
       pos: pos
+    }),
+    removeErrors: () => dispatch({
+      type: "REMOVE_ERRORS"
     })
   });
 };

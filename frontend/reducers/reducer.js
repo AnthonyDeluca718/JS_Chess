@@ -54,6 +54,9 @@ const Reducer = function(state, action) {
           if (chessBoard.checkmate(oldState.currentPlayer)) {
             oldState.checkmate = true;
           }
+        } else if (res = -1) {
+          debugger
+          oldState.errors = "Can't move into Check";
         }
       }
       return oldState;
@@ -70,6 +73,10 @@ const Reducer = function(state, action) {
         activeSquare: null,
         checkmate: false
       });
+    case "REMOVE_ERRORS":
+      oldState = merge({}, state);
+      oldState.errors = "";
+      return oldState;
     default:
       return state;
   }

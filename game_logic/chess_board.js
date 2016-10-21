@@ -207,10 +207,8 @@ class ChessBoard {
     let piece = this.get(start);
 
     if (!piece.validMoves().has(finish)) {
-      alert("illegal move");
-      return -1;
+      return -2;
     } else if (this.moveIntoCheck(start, finish, color)) {
-      alert("You can't move into check");
       return -1;
     }
     let wInd = this.whitePieces.indexOf(that.get(finish));

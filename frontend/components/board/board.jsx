@@ -19,11 +19,12 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.createDispatch = this.createDispatch.bind(this);
+    this.removeErrors = this.props.removeErrors.bind(this);
     this.openModal = this.openModal.bind(this);
     this.onModalClose = this.onModalClose.bind(this);
     this.state = {
-      error: "",
       modalOpen: false,
+      errors: this.props.errors,
       style: {
         content : {
           margin: '150px auto 0 auto',
@@ -35,7 +36,6 @@ class Board extends React.Component {
 
         }
       },
-
     }
   }
 
@@ -44,7 +44,7 @@ class Board extends React.Component {
   }
 
   openModal() {
-    this.setState({modalOpen: true})
+    this.setState({modalOpen: true});
   }
 
   createDispatch(i,j) {
@@ -90,11 +90,11 @@ class Board extends React.Component {
         </ul>
 
         <Modal
-          isOpen={this.modalOpen}
-          onRequestClose={this.onModalClose}
+          isOpen={Boolean(this.state.errors)}
+          onRequestClose={this.removeErrors}
           style={this.state.style}
           >
-          {this.state.error}
+          {this.props.errors}
         </Modal>
 
       </div>
