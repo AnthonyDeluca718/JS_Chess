@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from 'react-modal';
 import Square from '../square/square';
 import Piece from '../../piece';
 
@@ -18,6 +19,32 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.createDispatch = this.createDispatch.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.onModalClose = this.onModalClose.bind(this);
+    this.state = {
+      error: "",
+      modalOpen: false,
+      style: {
+        content : {
+          margin: '150px auto 0 auto',
+          width: '350px',
+          height: '115px',
+          border: '1px solid red',
+          background: '#DDA0DD'
+        }, overlay: {
+
+        }
+      },
+
+    }
+  }
+
+  onModalClose() {
+    this.setState({modalOpen: false});
+  }
+
+  openModal() {
+    this.setState({modalOpen: true})
   }
 
   createDispatch(i,j) {
@@ -56,9 +83,21 @@ class Board extends React.Component {
     }
 
     return(
-      <ul className="board group">
-        {arr}
-      </ul>
+      <div>
+
+        <ul className="board group">
+          {arr}
+        </ul>
+
+        <Modal
+          isOpen={this.modalOpen}
+          onRequestClose={this.onModalClose}
+          style={this.state.style}
+          >
+          {this.state.error}
+        </Modal>
+
+      </div>
     );
   }
 }
