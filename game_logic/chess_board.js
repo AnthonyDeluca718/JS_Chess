@@ -162,7 +162,6 @@ class ChessBoard {
 
     for (let i=0; i < pieces.length; i++) {
       if (pieces[i].validMoves().has(kingPos)) {
-        console.log(pieces[i]);
         return true;
       }
     }

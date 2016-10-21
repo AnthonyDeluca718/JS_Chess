@@ -74,3 +74,19 @@ img {
   font-style: sans-serif;
   text-align: center;
 }
+
+.reset-button {
+  margin: 40px auto 30px auto;
+  display: block;
+  padding: 10px;
+  background: red;
+  color: #fff;
+  border-radius: 6px;
+  border: 1px solid black;
+  width: 100px;
+  text-align: center;
+}
+
+.reset-button:hover {
+  cursor: pointer;
+}

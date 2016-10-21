@@ -16,6 +16,11 @@ Array.prototype.has = function(el) {
 const Reducer = function(state, action) {
   switch(action.type) {
     case "RECEIVE_POSITION":
+
+      if(state.checkmate) {
+        return state;
+      }
+
       let oldState = merge({},state);
       let pos = action.pos;
       let chessBoard = oldState.chessBoard;
