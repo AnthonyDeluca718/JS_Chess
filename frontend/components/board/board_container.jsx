@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
   return({
     board: state.chessBoard.board,
     currentPlayer: state.currentPlayer,
-    activeSquares: state.activeSquares
+    activeSquare: state.activeSquare
   })
 };
 

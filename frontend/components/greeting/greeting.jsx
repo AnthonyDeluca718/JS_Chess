@@ -7,14 +7,21 @@ class Greeting extends React.Component {
   }
 
   render() {
-    return(
-      <div className="greeting" >
-        {"Current Player: " + this.props.currentPlayer}
-        <br/>
-        {"checkmate: " + this.props.checkmate}
 
-      </div>
-    )
+    if (this.props.checkmate) {
+      return(
+        <div className="greeting" >
+          {"Checkmate. " + (this.props.currentPlayer==="white" ? "Black" : "White") + " wins!"}
+        </div>
+      )
+    } else {
+      let otherPlayer
+      return(
+        <div className="greeting" >
+          {"Current Player: " + (this.props.currentPlayer==="white" ? "White" : "Black")}
+        </div>
+      )
+    }
   }
 }
 

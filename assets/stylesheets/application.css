@@ -40,7 +40,6 @@ img {
 .board {
   display: block;
   margin: 0 auto;
-  margin-top: 80px;
   width: 400px;
   height: 400px;
 }
@@ -66,4 +65,12 @@ img {
 
 .board .active {
   background:	#00FF00;
+}
+
+.greeting {
+  display: block;
+  margin: 40px auto 40px auto;
+  font-size: 24px;
+  font-style: sans-serif;
+  text-align: center;
 }

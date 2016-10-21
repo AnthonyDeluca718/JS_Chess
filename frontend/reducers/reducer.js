@@ -32,14 +32,14 @@ const Reducer = function(state, action) {
 
       if (pieces.map( (piece) => {return(piece.pos)}).has(pos) ) {
         oldState.moveBuffer = pos;
-        oldState.activeSquares = chessBoard.get(pos).validMoves();
+        oldState.activeSquare = pos;
       } else if(oldState.moveBuffer === null) {
         return oldState;
       } else {
         let res = chessBoard.movePiece(oldState.moveBuffer, action.pos, oldState.currentPlayer);
         if (res === 1) {
           oldState.moveBuffer = null;
-          oldState.activeSquares = [];
+          oldState.activeSquare = null;
           if (currentPlayer === "white") {
             oldState.currentPlayer = "black";
           } else {

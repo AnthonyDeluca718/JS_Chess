@@ -12,6 +12,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = function(dispatch, ownProps) {
   return({
+    resetGame: () => dispatch({
+      type: "RESET_GAME"
+    })
   });
 };
 

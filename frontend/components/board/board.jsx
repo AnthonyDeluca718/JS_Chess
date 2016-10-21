@@ -37,7 +37,7 @@ class Board extends React.Component {
           color = "black";
         }
 
-        if (this.props.activeSquares.has([i,j]) ) {
+        if (JSON.stringify(this.props.activeSquare) === JSON.stringify([i,j])) {
           active = "active";
         } else {
           active = "";
