@@ -55,7 +55,6 @@ const Reducer = function(state, action) {
             oldState.checkmate = true;
           }
         } else if (res = -1) {
-          debugger
           oldState.errors = "Can't move into Check";
         }
       }

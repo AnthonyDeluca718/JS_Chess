@@ -23,7 +23,7 @@ class Board extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.onModalClose = this.onModalClose.bind(this);
     this.state = {
-      modalOpen: false,
+      modalOpen: Boolean(this.props.errors),
       errors: this.props.errors,
       style: {
         content : {
@@ -90,7 +90,7 @@ class Board extends React.Component {
         </ul>
 
         <Modal
-          isOpen={Boolean(this.state.errors)}
+          isOpen={Boolean(this.props.errors)}
           onRequestClose={this.removeErrors}
           style={this.state.style}
           >
