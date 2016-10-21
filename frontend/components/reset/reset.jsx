@@ -8,7 +8,7 @@ class Reset extends React.Component {
 
   render() {
     return(
-      <div className="reset-button">
+      <div className="reset-button" onClick={this.props.resetGame}>
         Reset Game
       </div>
 

@@ -1,4 +1,5 @@
 import merge from 'lodash/merge';
+import ChessBoard from '../../game_logic/chess_board';
 
 
 Array.prototype.has = function(el) {
@@ -56,6 +57,19 @@ const Reducer = function(state, action) {
         }
       }
       return oldState;
+    case "RESET_GAME":
+      chessBoard = new ChessBoard ();
+      chessBoard.setUp();
+
+      return({
+        chessBoard: chessBoard,
+        whitePieces: chessBoard.whitePieces,
+        blackPieces: chessBoard.blackPieces,
+        currentPlayer: "white",
+        moveBuffer: null,
+        activeSquare: null,
+        checkmate: false
+      });
     default:
       return state;
   }
