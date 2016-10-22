@@ -54,7 +54,7 @@ const Reducer = function(state, action) {
           if (chessBoard.checkmate(oldState.currentPlayer)) {
             oldState.checkmate = true;
           }
-        } else if (res = -1) {
+        } else if (res === -1) {
           oldState.errors = "Can't move into Check";
         }
       }

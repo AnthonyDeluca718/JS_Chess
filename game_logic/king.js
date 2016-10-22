@@ -4,6 +4,7 @@ class King extends Piece {
 
   constructor(color, board, pos) {
     super(color, board, pos, "king");
+    this.state = false;
   }
 
   validMoves() {
