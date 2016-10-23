@@ -63,7 +63,7 @@ const Reducer = function(state, action) {
           }
 
         } else if (res === -1) {
-          oldState.errors = "Can't move into Check";
+          oldState.errors = "You must avoid check";
         }
       }
       return oldState;

@@ -91,8 +91,16 @@ img {
   cursor: pointer;
 }
 
-.modal {
+.reset-modal-message {
   text-align: center;
-  font-size: 44px;
-  vertical-align: center;
+}
+
+.modal-error > text {
+  display: block;
+  font-size: 28px;
+  color: red;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }

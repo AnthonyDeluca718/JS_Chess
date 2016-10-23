@@ -53,7 +53,7 @@ class Reset extends React.Component {
         style={this.state.style}
         >
         <div className="reset-modal-message">
-          "Are you sure you want to reset the game?"
+          Are you sure you want to reset the game?
           <div className="reset-button" onClick={this.yesReset}>
             Yes, reset.
           </div>

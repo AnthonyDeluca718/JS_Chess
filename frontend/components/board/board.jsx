@@ -93,9 +93,11 @@ class Board extends React.Component {
           isOpen={Boolean(this.props.errors)}
           onRequestClose={this.removeErrors}
           style={this.state.style}
-          className = "modal"
+          className = "modal-error"
           >
-          {this.props.errors}
+          <text >
+            {this.props.errors}
+          </text>
         </Modal>
 
       </div>
