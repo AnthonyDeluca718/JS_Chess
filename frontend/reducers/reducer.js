@@ -42,7 +42,17 @@ const Reducer = function(state, action) {
       } else if(oldState.moveBuffer === null) {
         return oldState;
       } else {
-        let res = chessBoard.movePiece(oldState.moveBuffer, action.pos, oldState.currentPlayer);
+        let res;
+
+        if ( chessBoard.get(oldState.moveBuffer).type==="king" &&
+          (pos[0] === 7 || pos[0] === 0) &&
+          (pos[1] === 2 || pos[1] === 6)
+        ) {
+          res = chessBoard.castle(currentPlayer, (pos[1] === 6 ? "short" : "long") );
+        } else {
+          res = chessBoard.movePiece(oldState.moveBuffer, action.pos, currentPlayer);
+        }
+
         if (res === 1) {
           oldState.moveBuffer = null;
           oldState.activeSquare = null;
@@ -64,6 +74,8 @@ const Reducer = function(state, action) {
 
         } else if (res === -1) {
           oldState.errors = "You must avoid check";
+        } else if (res === -3) {
+          oldState.errors = "You cannot castle";
         }
       }
       return oldState;

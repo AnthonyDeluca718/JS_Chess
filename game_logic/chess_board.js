@@ -328,11 +328,11 @@ class ChessBoard {
     }
 
     let spaces, rook;
-    if(Type === "long") {
-      rook = this.get([row, 0]);
+    if(castleType === "short") {
+      rook = this.get([row, 7]);
       spaces = [ [row, 4], [row, 5], [row, 6] ];
-    } else if (type === "short") {
-      rook = this.get([row,7]);
+    } else if (castleType === "long") {
+      rook = this.get([row,0]);
       spaces = [ [row, 1], [row, 2], [row, 3], [row, 4] ];
     }
 
@@ -340,20 +340,40 @@ class ChessBoard {
       return -3; //You can't castle if you moved your Rook or King.
     }
 
+    for (let i=1; i< spaces.length-1; i++ ) {
+      if (!this.get(spaces[i]).empty() ) {
+        return -3; //spaces between rook and king must be empty to castle
+      }
+    }
+
     //can't castle through or into check
     for(let i=0; i < enemyPieces.length; i++) {
-      let eMoves = pieces[i].validMoves();
+      let eMoves = enemyPieces[i].validMoves();
 
       for (let j=0; j < spaces.length; j++) {
         if (eMoves.has(spaces[j]) ) {
-          return -4; //You can't castle through or into check
-          break
-          break
+          return -3; //You can't castle through or into check
         }
       }
     }
 
-    return true;
+    if (castleType === "long") {
+      rook.updatePos([row, 3]);
+      king.updatePos( [row, 2]);
+      this.board[row][3] = rook;
+      this.board[row][2] = king;
+      this.board[row][0] = new NullPiece();
+      this.board[row][4] = new NullPiece();
+    } else {
+      rook.updatePos([row, 5]);
+      king.updatePos( [row, 6]);
+      this.board[row][5] = rook;
+      this.board[row][6] = king;
+      this.board[row][4] = new NullPiece();
+      this.board[row][7] = new NullPiece();
+    }
+
+    return 1;
   }
 
 
