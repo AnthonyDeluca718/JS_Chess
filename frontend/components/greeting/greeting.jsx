@@ -8,16 +8,16 @@ class Greeting extends React.Component {
 
   render() {
     let gameOver = this.props.gameOver;
-    if (gameOver === "stalemate") {
+    if (gameOver === "Stalemate") {
       return(
         <div className="greeting" >
           Stalemate. Tie Game.
         </div>
       )
-    } else if(gameOver == "stalemate"){
+    } else if(gameOver == "Checkmate"){
       return (
         <div className="greeting" >
-          {"Checkmate. " + (this.props.currentPlayer==="white" ? "White" : "Black") + " wins."}
+          {"Checkmate. " + (this.props.currentPlayer==="white" ? "Black" : "White") + " wins."}
         </div>
       )
     } else {
