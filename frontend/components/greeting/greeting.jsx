@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+// {"Checkmate. " + (this.props.currentPlayer==="white" ? "Black" : "White") + " wins!"}
 class Greeting extends React.Component {
   constructor(props) {
     super(props);
@@ -8,10 +8,10 @@ class Greeting extends React.Component {
 
   render() {
 
-    if (this.props.checkmate) {
+    if (this.props.gameOver) {
       return(
         <div className="greeting" >
-          {"Checkmate. " + (this.props.currentPlayer==="white" ? "Black" : "White") + " wins!"}
+          {this.props.gameOver}
         </div>
       )
     } else {

@@ -18,7 +18,7 @@ const Reducer = function(state, action) {
   switch(action.type) {
     case "RECEIVE_POSITION":
 
-      if(state.checkmate) {
+      if(state.gameOver) {
         return state;
       }
 
@@ -51,9 +51,10 @@ const Reducer = function(state, action) {
           } else {
             oldState.currentPlayer = "white";
           }
-          if (chessBoard.checkmate(oldState.currentPlayer)) {
-            oldState.checkmate = true;
-          }
+
+          //handling gameover
+          oldState.gameOver = oldState.chessBoard.gameOver(oldState.currentPlayer);
+
         } else if (res === -1) {
           oldState.errors = "Can't move into Check";
         }

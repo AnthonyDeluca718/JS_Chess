@@ -15,7 +15,7 @@ let initialState = ({
   currentPlayer: "white",
   moveBuffer: null,
   activeSquare: null,
-  checkmate: false,
+  gameOver: false,
   errors: ""
 });
 

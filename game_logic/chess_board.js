@@ -202,6 +202,43 @@ class ChessBoard {
     return true;
   }
 
+  gameOver(color) {
+    const that = this;
+    const inCheck = this.inCheck(color);
+    let noLegalMoves = true;
+
+    let pieces;
+    if (color === "white") {
+      pieces = this.whitePieces;
+    } else {
+      pieces = this.blackPieces;
+    }
+
+    for(let i=0; i<pieces.length; i++){
+      let piece = pieces[i];
+      let moves = piece.validMoves();
+      let start = piece.pos;
+
+      for(let j=0; j<moves.length; j++) {
+        if( !that.moveIntoCheck(start, moves[j], color) ) {
+          noLegalMoves =  false;
+          break;
+          break;
+        }
+      }
+
+      if (noLegalMoves && inCheck) {
+        return "checkmate";
+      } else if (noLegalMoves) {
+        return "stalemate";
+      } else {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   movePiece(start, finish, color) {
     const that=this;
     let piece = this.get(start);
