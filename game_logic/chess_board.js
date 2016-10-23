@@ -202,7 +202,7 @@ class ChessBoard {
     return true;
   }
 
-  gameOver(color) {
+  checkStatus(color) {
     const that = this;
     const inCheck = this.inCheck(color);
     let noLegalMoves = true;
@@ -230,6 +230,8 @@ class ChessBoard {
       return "checkmate";
     } else if (noLegalMoves) {
       return "stalemate";
+    } else if (inCheck) {
+      return "check";
     } else {
       return false;
     }

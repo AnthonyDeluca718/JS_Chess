@@ -31,7 +31,7 @@ class Board extends React.Component {
           width: '350px',
           height: '115px',
           border: '1px solid red',
-          background: '#DDA0DD'
+          background: '#D3D3D3',
         }, overlay: {
 
         }
@@ -93,6 +93,7 @@ class Board extends React.Component {
           isOpen={Boolean(this.props.errors)}
           onRequestClose={this.removeErrors}
           style={this.state.style}
+          className = "modal"
           >
           {this.props.errors}
         </Modal>

@@ -15,9 +15,9 @@ Array.prototype.has = function(el) {
 }
 
 const Reducer = function(state, action) {
+
   switch(action.type) {
     case "RECEIVE_POSITION":
-
       if(state.gameOver) {
         return state;
       }
@@ -53,7 +53,14 @@ const Reducer = function(state, action) {
           }
 
           //handling gameover
-          oldState.gameOver = oldState.chessBoard.gameOver(oldState.currentPlayer);
+          let checkStatus = oldState.chessBoard.checkStatus(oldState.currentPlayer);
+          if (checkStatus === "check") {
+            oldState.errors = "Check";
+          } else if (checkStatus === "checkmate") {
+            oldState.gameOver = "Checkmate";
+          } else if (checkStatus === "stalemate") {
+            oldState.gameOver = "Stalemate";
+          }
 
         } else if (res === -1) {
           oldState.errors = "Can't move into Check";

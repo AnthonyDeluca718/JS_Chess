@@ -7,15 +7,25 @@ class Greeting extends React.Component {
   }
 
   render() {
+    let gameOver = this.props.gameOver;
+    if (gameOver) {
+      let message;
+      switch (gameOver) {
+        case "check":
 
-    if (this.props.gameOver) {
+        case "checkmate":
+
+
+        case "stalemate":
+
+      }
+
       return(
         <div className="greeting" >
           {this.props.gameOver}
         </div>
       )
     } else {
-      let otherPlayer
       return(
         <div className="greeting" >
           {"Current Player: " + (this.props.currentPlayer==="white" ? "White" : "Black")}

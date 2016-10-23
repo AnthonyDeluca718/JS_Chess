@@ -90,3 +90,9 @@ img {
 .reset-button:hover {
   cursor: pointer;
 }
+
+.modal {
+  text-align: center;
+  font-size: 44px;
+  vertical-align: center;
+}
