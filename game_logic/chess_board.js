@@ -222,21 +222,17 @@ class ChessBoard {
       for(let j=0; j<moves.length; j++) {
         if( !that.moveIntoCheck(start, moves[j], color) ) {
           noLegalMoves =  false;
-          break;
-          break;
         }
-      }
-
-      if (noLegalMoves && inCheck) {
-        return "checkmate";
-      } else if (noLegalMoves) {
-        return "stalemate";
-      } else {
-        return false;
       }
     }
 
-    return true;
+    if (noLegalMoves && inCheck) {
+      return "checkmate";
+    } else if (noLegalMoves) {
+      return "stalemate";
+    } else {
+      return false;
+    }
   }
 
   movePiece(start, finish, color) {
@@ -313,6 +309,3 @@ class ChessBoard {
 }
 
 module.exports = ChessBoard;
-
-window.chessBoard = new ChessBoard();
-window.chessBoard.setUp();
