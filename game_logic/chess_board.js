@@ -308,6 +308,55 @@ class ChessBoard {
       }
     }
   }
+
+  castle(color, castleType) {
+
+    let king = this.findKing(color);
+
+    if(king.moved) {
+      return -3; //You can't castle if you moved your Rook or King.
+    }
+
+    let pieces, enemyPieces, row;
+
+    if (color === "black") {
+      row =0;
+      enemyPieces = this.whitePieces;
+    } else {
+      row = 7;
+      enemyPieces = this.blackPieces;
+    }
+
+    let spaces, rook;
+    if(Type === "long") {
+      rook = this.get([row, 0]);
+      spaces = [ [row, 4], [row, 5], [row, 6] ];
+    } else if (type === "short") {
+      rook = this.get([row,7]);
+      spaces = [ [row, 1], [row, 2], [row, 3], [row, 4] ];
+    }
+
+    if (rook.type != "rook" || rook.moved) {
+      return -3; //You can't castle if you moved your Rook or King.
+    }
+
+    //can't castle through or into check
+    for(let i=0; i < enemyPieces.length; i++) {
+      let eMoves = pieces[i].validMoves();
+
+      for (let j=0; j < spaces.length; j++) {
+        if (eMoves.has(spaces[j]) ) {
+          return -4; //You can't castle through or into check
+          break
+          break
+        }
+      }
+    }
+
+    return true;
+  }
+
+
 }
 
 module.exports = ChessBoard;
