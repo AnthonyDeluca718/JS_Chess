@@ -26,7 +26,7 @@ Extended version:
 
 The opening screen will explain the controls and allow the user to pick a difficulty level. The basic game commands are space to jump and enter/return to pause. The extended version includes asdf to change color.
 
-![Gameplay] (https://github.com/AnthonyDeluca718/JS_CHESS/blob/master/assets/Images/gameplay.png)
+![Gameplay] (https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/gameplay.png)
 
 ### Architecture and Technologies
 
