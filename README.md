@@ -1,6 +1,6 @@
 ## JavaScript Chess
 
-![Live Site]
+[Live Site]
 (https://github.com/AnthonyDeluca718/JS_Chess/blob/master/index.html)
 
 ### Functionality
