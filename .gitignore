@@ -7,7 +7,5 @@
 node_modules
 
 # Ignore bundle
-bundle.js
-bundle.js.map
 .cache
 .DS_Store
