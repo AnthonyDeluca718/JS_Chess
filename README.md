@@ -1,7 +1,7 @@
 ## JavaScript Chess
 
 [Live Site]
-(https://github.com/AnthonyDeluca718/JS_Chess/blob/master/index.html)
+(https://anthonydeluca718.github.io/JS_Chess/)
 
 ### Functionality
 
@@ -29,4 +29,4 @@ However some rarely occurring rules are not implemented:
 ### Implementation Notes
 -The logic for the chess is located in /game_logic
 -A large amount of the logic for handling player turns and input is in the reducer function in /frontend.
--The chessboard logic is heavily object oriented. All the chess pieces are objects. 
+-The chessboard logic is heavily object oriented. All the chess pieces are objects.
