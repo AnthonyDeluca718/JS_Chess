@@ -27,3 +27,6 @@ However some rarely occurring rules are not implemented:
 - Webpack is used to bundle and serve up the various scripts
 
 ### Implementation Notes
+-The logic for the chess is located in /game_logic
+-A large amount of the logic for handling player turns and input is in the reducer function in /frontend.
+-The chessboard logic is heavily object oriented. All the chess pieces are objects. 
