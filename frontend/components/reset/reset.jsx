@@ -10,7 +10,7 @@ class Reset extends React.Component {
     this.yesReset = this.yesReset.bind(this);
 
     this.openRandom = this.openRandom.bind(this);
-    this.onModalClose = this.onRandomClose.bind(this);
+    this.onRandomClose = this.onRandomClose.bind(this);
     this.randGame = this.props.randGame;
     this.yesRandom = this.yesRandom.bind(this);
 

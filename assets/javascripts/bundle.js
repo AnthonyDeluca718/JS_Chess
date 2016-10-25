@@ -25533,7 +25533,7 @@
 	    _this.yesReset = _this.yesReset.bind(_this);
 	
 	    _this.openRandom = _this.openRandom.bind(_this);
-	    _this.onModalClose = _this.onRandomClose.bind(_this);
+	    _this.onRandomClose = _this.onRandomClose.bind(_this);
 	    _this.randGame = _this.props.randGame;
 	    _this.yesRandom = _this.yesRandom.bind(_this);
 	
