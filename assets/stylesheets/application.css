@@ -76,14 +76,14 @@ img {
 }
 
 .reset-button {
-  margin: 40px auto 30px auto;
+  margin: 30px auto 30px auto;
   display: block;
   padding: 10px;
   background: red;
   color: #fff;
   border-radius: 6px;
   border: 1px solid black;
-  width: 100px;
+  width: 120px;
   text-align: center;
 }
 

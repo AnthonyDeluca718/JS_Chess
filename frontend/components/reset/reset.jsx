@@ -62,13 +62,15 @@ class Reset extends React.Component {
     return(
     <div className="reset-container">
 
-      <div className="reset-button" onClick={this.openModal}>
-        Reset Game
-      </div>
+      <ul className="reset-buttons group">
+        <li className="reset-button" onClick={this.openModal}>
+          Reset Game
+        </li>
 
-      <div className="reset-button" onClick={this.openRandom}>
-        Random Game
-      </div>
+        <li className="reset-button" onClick={this.openRandom}>
+          Random Game
+        </li>
+      </ul>
 
       <Modal
         isOpen={this.state.modalOpen}
@@ -89,9 +91,9 @@ class Reset extends React.Component {
         style={this.state.style}
         >
         <div className="reset-modal-message">
-          Are you sure you want to reset the game?
+          Are you sure you want to create a new random board?
           <div className="reset-button" onClick={this.yesRandom}>
-            Yes, reset.
+            Yes, randomize.
           </div>
         </div>
       </Modal>

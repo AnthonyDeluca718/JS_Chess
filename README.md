@@ -19,6 +19,7 @@ However some rarely occurring rules are not implemented:
 ### Display
 
 ![Gameplay] (https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/gameplay.png)
+![RandomBoard] ()
 
 ### Main Technologies
 

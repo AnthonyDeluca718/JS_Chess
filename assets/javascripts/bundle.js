@@ -23207,7 +23207,7 @@
 	          width: '350px',
 	          height: '115px',
 	          border: '1px solid red',
-	          background: '#D3D3D3'
+	          background: 'white'
 	        }, overlay: {}
 	      }
 	    };
@@ -25593,14 +25593,18 @@
 	        'div',
 	        { className: 'reset-container' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'reset-button', onClick: this.openModal },
-	          'Reset Game'
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'reset-button', onClick: this.openRandom },
-	          'Random Game'
+	          'ul',
+	          { className: 'reset-buttons group' },
+	          _react2.default.createElement(
+	            'li',
+	            { className: 'reset-button', onClick: this.openModal },
+	            'Reset Game'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            { className: 'reset-button', onClick: this.openRandom },
+	            'Random Game'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          _reactModal2.default,
@@ -25630,11 +25634,11 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'reset-modal-message' },
-	            'Are you sure you want to reset the game?',
+	            'Are you sure you want to create a new random board?',
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'reset-button', onClick: this.yesRandom },
-	              'Yes, reset.'
+	              'Yes, randomize.'
 	            )
 	          )
 	        )

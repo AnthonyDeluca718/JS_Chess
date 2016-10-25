@@ -31,7 +31,7 @@ class Board extends React.Component {
           width: '350px',
           height: '115px',
           border: '1px solid red',
-          background: '#D3D3D3',
+          background: 'white',
         }, overlay: {
 
         }
