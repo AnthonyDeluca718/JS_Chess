@@ -12,6 +12,9 @@ const mapDispatchToProps = function(dispatch, ownProps) {
   return({
     resetGame: () => dispatch({
       type: "RESET_GAME",
+    }),
+    randGame: () => dispatch({
+      type: "RANDOM_GAME",
     })
   });
 };

@@ -9,8 +9,14 @@ class Reset extends React.Component {
     this.resetGame = this.props.resetGame;
     this.yesReset = this.yesReset.bind(this);
 
+    this.openRandom = this.openRandom.bind(this);
+    this.onModalClose = this.onRandomClose.bind(this);
+    this.randGame = this.props.randGame;
+    this.yesRandom = this.yesRandom.bind(this);
+
     this.state = {
       modalOpen: false,
+      randomOpen: false,
       style: {
         content : {
           margin: '150px auto 0 auto',
@@ -39,12 +45,29 @@ class Reset extends React.Component {
     this.setState({modalOpen: false});
   }
 
+  onRandomClose() {
+    this.setState({randomOpen: false});
+  }
+
+  openRandom() {
+    this.setState({randomOpen: true})
+  }
+
+  yesRandom() {
+    this.randGame();
+    this.setState({randomOpen: false});
+  }
+
   render() {
     return(
     <div className="reset-container">
 
       <div className="reset-button" onClick={this.openModal}>
         Reset Game
+      </div>
+
+      <div className="reset-button" onClick={this.openRandom}>
+        Random Game
       </div>
 
       <Modal
@@ -55,6 +78,19 @@ class Reset extends React.Component {
         <div className="reset-modal-message">
           Are you sure you want to reset the game?
           <div className="reset-button" onClick={this.yesReset}>
+            Yes, reset.
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={this.state.randomOpen}
+        onRequestClose={this.onRandomClose}
+        style={this.state.style}
+        >
+        <div className="reset-modal-message">
+          Are you sure you want to reset the game?
+          <div className="reset-button" onClick={this.yesRandom}>
             Yes, reset.
           </div>
         </div>

@@ -92,6 +92,19 @@ const Reducer = function(state, action) {
         activeSquare: null,
         checkmate: false
       });
+    case "RANDOM_GAME":
+      chessBoard = new ChessBoard ();
+      chessBoard.randSetUp();
+
+      return({
+        chessBoard: chessBoard,
+        whitePieces: chessBoard.whitePieces,
+        blackPieces: chessBoard.blackPieces,
+        currentPlayer: "white",
+        moveBuffer: null,
+        activeSquare: null,
+        checkmate: false
+      });
     case "REMOVE_ERRORS":
       oldState = merge({}, state);
       oldState.errors = "";

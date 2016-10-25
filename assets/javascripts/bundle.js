@@ -25480,6 +25480,11 @@
 	      return dispatch({
 	        type: "RESET_GAME"
 	      });
+	    },
+	    randGame: function randGame() {
+	      return dispatch({
+	        type: "RANDOM_GAME"
+	      });
 	    }
 	  };
 	};
@@ -25527,8 +25532,14 @@
 	    _this.resetGame = _this.props.resetGame;
 	    _this.yesReset = _this.yesReset.bind(_this);
 	
+	    _this.openRandom = _this.openRandom.bind(_this);
+	    _this.onModalClose = _this.onRandomClose.bind(_this);
+	    _this.randGame = _this.props.randGame;
+	    _this.yesRandom = _this.yesRandom.bind(_this);
+	
 	    _this.state = {
 	      modalOpen: false,
+	      randomOpen: false,
 	      style: {
 	        content: {
 	          margin: '150px auto 0 auto',
@@ -25560,6 +25571,22 @@
 	      this.setState({ modalOpen: false });
 	    }
 	  }, {
+	    key: 'onRandomClose',
+	    value: function onRandomClose() {
+	      this.setState({ randomOpen: false });
+	    }
+	  }, {
+	    key: 'openRandom',
+	    value: function openRandom() {
+	      this.setState({ randomOpen: true });
+	    }
+	  }, {
+	    key: 'yesRandom',
+	    value: function yesRandom() {
+	      this.randGame();
+	      this.setState({ randomOpen: false });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -25569,6 +25596,11 @@
 	          'div',
 	          { className: 'reset-button', onClick: this.openModal },
 	          'Reset Game'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'reset-button', onClick: this.openRandom },
+	          'Random Game'
 	        ),
 	        _react2.default.createElement(
 	          _reactModal2.default,
@@ -25584,6 +25616,24 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'reset-button', onClick: this.yesReset },
+	              'Yes, reset.'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactModal2.default,
+	          {
+	            isOpen: this.state.randomOpen,
+	            onRequestClose: this.onRandomClose,
+	            style: this.state.style
+	          },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'reset-modal-message' },
+	            'Are you sure you want to reset the game?',
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'reset-button', onClick: this.yesRandom },
 	              'Yes, reset.'
 	            )
 	          )
@@ -25744,6 +25794,19 @@
 	    case "RESET_GAME":
 	      chessBoard = new _chess_board2.default();
 	      chessBoard.setUp();
+	
+	      return {
+	        chessBoard: chessBoard,
+	        whitePieces: chessBoard.whitePieces,
+	        blackPieces: chessBoard.blackPieces,
+	        currentPlayer: "white",
+	        moveBuffer: null,
+	        activeSquare: null,
+	        checkmate: false
+	      };
+	    case "RANDOM_GAME":
+	      chessBoard = new _chess_board2.default();
+	      chessBoard.randSetUp();
 	
 	      return {
 	        chessBoard: chessBoard,
@@ -28890,6 +28953,65 @@
 	      }
 	
 	      return 1;
+	    }
+	  }, {
+	    key: 'randSetUp',
+	    value: function randSetUp() {
+	      var _this = this;
+	
+	      var whitePieces = this.whitePieces;
+	      var blackPieces = this.blackPieces;
+	      var board = this.board;
+	
+	      //queens
+	      var queen1 = new Queen("black", this, [0, 3]);
+	      board[0][3] = queen1;
+	      blackPieces.push(queen1);
+	      var queen2 = new Queen("white", this, [7, 3]);
+	      board[7][3] = queen2;
+	      whitePieces.push(queen2);
+	
+	      //King
+	      var king1 = new King("black", this, [0, 4]);
+	      board[0][4] = king1;
+	      blackPieces.push(king1);
+	      var king2 = new King("white", this, [7, 4]);
+	      board[7][4] = king2;
+	      whitePieces.push(king2);
+	
+	      var num1 = void 0,
+	          num2 = void 0; //random numbers
+	      var piece1 = void 0,
+	          piece2 = void 0;
+	
+	      var pieceArr = ["pawn", "bishop", "knight", "queen", "rook"];
+	
+	      //random Front Row
+	      for (var i = 0; i < 8; i++) {
+	        num1 = Math.floor(5 * Math.random());
+	        num2 = Math.floor(5 * Math.random());
+	
+	        piece1 = this.makePiece("white", [6, i], pieceArr[num1]);
+	        board[6][i] = piece1;
+	        whitePieces.push(piece1);
+	        piece2 = this.makePiece("black", [1, i], pieceArr[num2]);
+	        board[1][i] = piece2;
+	        blackPieces.push(piece2);
+	      }
+	
+	      //random Back row
+	      [0, 1, 2, 5, 6, 7].forEach(function (i) {
+	
+	        num1 = Math.floor(5 * Math.random());
+	        num2 = Math.floor(5 * Math.random());
+	
+	        piece1 = _this.makePiece("white", [7, i], pieceArr[num1]);
+	        board[7][i] = piece1;
+	        whitePieces.push(piece1);
+	        piece2 = _this.makePiece("black", [0, i], pieceArr[num2]);
+	        board[0][i] = piece2;
+	        blackPieces.push(piece2);
+	      });
 	    }
 	  }]);
 	
