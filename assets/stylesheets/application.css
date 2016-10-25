@@ -83,7 +83,7 @@ img {
   color: #fff;
   border-radius: 6px;
   border: 1px solid black;
-  width: 120px;
+  width: 140px;
   text-align: center;
 }
 
@@ -103,4 +103,16 @@ img {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+.reset-buttons {
+  margin: 40px auto 30px auto;
+  text-align: center;
+  display: block;
+}
+
+.reset-buttons li {
+  float: center;
+  display: inline-block;
+  margin: 0 10px;
 }

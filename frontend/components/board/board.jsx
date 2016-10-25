@@ -27,7 +27,7 @@ class Board extends React.Component {
       errors: this.props.errors,
       style: {
         content : {
-          margin: '150px auto 0 auto',
+          margin: '250px auto 0 auto',
           width: '350px',
           height: '115px',
           border: '1px solid red',
