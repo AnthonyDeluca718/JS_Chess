@@ -18,8 +18,8 @@ However some rarely occurring rules are not implemented:
 
 ### Display
 
-![Gameplay] (https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/gameplay.png)
-![RandomBoard] ()
+![Gameplay] (https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/BoardState.png)
+![RandomBoard] (https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/RandomInitial.png))
 
 ### Main Technologies
 
@@ -29,5 +29,5 @@ However some rarely occurring rules are not implemented:
 
 ### Implementation Notes
 -The chess game rules are implemented in located in /game_logic
--A large amount of the logic for handling player turns and input is in the reducer function in /frontend.
--Object Oriented Design
+-A large amount of the logic for handling player turns and input is handled by the reducer function in /frontend.
+-Object Oriented Design: Board and Pieces. The The design is flexible. Adding random pieces only required adding a random set up function and setting up the frontend randomize button. More modes could be easily added. 
