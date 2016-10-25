@@ -16,11 +16,11 @@ However some rarely occurring rules are not implemented:
 -Threefold repetition draws
 -Fifty Move Rule
 
-### Display:Normal Gamestate
+### Display: Standard Rules
 
 ![Gameplay] (https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/BoardState.png)
 
-### Display:Random Starting Position
+### Display: Random Starting Position
 
 ![RandomBoard] (https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/RandomInitial.png))
 
