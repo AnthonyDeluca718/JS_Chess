@@ -70,9 +70,10 @@ img {
 .greeting {
   display: block;
   margin: 40px auto 40px auto;
-  font-size: 24px;
-  font-style: sans-serif;
+  font-size: 48px;
+  font-family: 'Tangerine', cursive;;
   text-align: center;
+  color: #3CB371;
 }
 
 .reset-button {
@@ -115,4 +116,25 @@ img {
   float: center;
   display: inline-block;
   margin: 0 10px;
+}
+
+.footer-content {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.footer-content i {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.footer-signiture {
+  display: inline;
+  font-size: 36px;
+  margin-right: 40px;
+  font-family: 'Cookie', cursive;
+}
+
+.footer-icons {
+  font-size: 32px;
 }
