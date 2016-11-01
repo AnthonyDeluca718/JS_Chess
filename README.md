@@ -12,7 +12,7 @@ All of the core functionality of chess is implemented:
 - Alerts when a player is put into check
 
 However some rarely occurring rules are not implemented:
-- En Peasant
+- En Passant
 - Threefold repetition draws
 - Fifty Move Rule
 
