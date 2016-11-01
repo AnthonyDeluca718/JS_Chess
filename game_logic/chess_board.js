@@ -400,32 +400,33 @@ class ChessBoard {
     let num1, num2; //random numbers
     let piece1, piece2;
 
-    let pieceArr = ["pawn", "bishop", "knight", "queen", "rook"];
+    let frontArr = ["pawn", "pawn", "pawn", "bishop", "bishop", "bishop", "knight", "knight", "knight", "rook"];
+    let backArr = ["pawn", "bishop", "knight", "rook", "queen" ];
 
     //random Front Row
     for(let i=0; i< 8; i++ ) {
-      num1 = Math.floor(5*Math.random());
-      num2 = Math.floor(5*Math.random());
+      num1 = Math.floor(10*Math.random());
+      num2 = Math.floor(10*Math.random());
 
-      piece1 = this.makePiece("white", [6,i], pieceArr[num1]);
+      piece1 = this.makePiece("white", [6,i], frontArr[num1]);
       board[6][i] = piece1;
       whitePieces.push(piece1);
-      piece2 = this.makePiece("black", [1,i], pieceArr[num2]);
+      piece2 = this.makePiece("black", [1,i], frontArr[num2]);
       board[1][i] = piece2;
       blackPieces.push(piece2);
     }
 
 
     //random Back row
-    [0,1,2,5,6,7].forEach( (i) => {
+    [0,1,2,3,5,6,7].forEach( (i) => {
 
       num1 = Math.floor(5*Math.random());
       num2 = Math.floor(5*Math.random());
 
-      piece1 = this.makePiece("white", [7,i], pieceArr[num1]);
+      piece1 = this.makePiece("white", [7,i], backArr[num1]);
       board[7][i] = piece1;
       whitePieces.push(piece1);
-      piece2 = this.makePiece("black", [0,i], pieceArr[num2]);
+      piece2 = this.makePiece("black", [0,i], backArr[num2]);
       board[0][i] = piece2;
       blackPieces.push(piece2);
 

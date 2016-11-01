@@ -12,7 +12,7 @@ const Root = ({store}) => {
         <GreetingContainer />
         <BoardContainer />
         <ResetContainer />
-        < Footer />
+        <Footer />
       </div>
     </Provider >
   )
