@@ -9,3 +9,5 @@ node_modules
 # Ignore bundle
 .cache
 .DS_Store
+
+.sass-cache
