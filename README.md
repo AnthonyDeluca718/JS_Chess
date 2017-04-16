@@ -3,6 +3,14 @@
 [Live Site]
 (https://anthonydeluca718.github.io/JS_Chess/)
 
+### Display: Standard Rules
+
+![Gameplay](https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/BoardState.png)
+
+### Display: Random Starting Position
+
+![RandomBoard](https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/RandomInitial.png)
+
 ### Functionality
 
 All of the core functionality of chess is implemented:
@@ -50,11 +58,3 @@ The compiled CSS file is included in the repo.
 
 
 #### SCSS Structure
-
-### Display: Standard Rules
-
-![Gameplay](https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/BoardState.png)
-
-### Display: Random Starting Position
-
-![RandomBoard](https://github.com/AnthonyDeluca718/JS_Chess/blob/master/assets/images/RandomInitial.png)
