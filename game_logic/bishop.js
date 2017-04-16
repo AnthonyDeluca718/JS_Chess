@@ -1,4 +1,4 @@
-const Piece = require( './piece.js' ) ;
+const Piece = require( './piece.js' );
 
 class Bishop extends Piece {
 
@@ -9,7 +9,9 @@ class Bishop extends Piece {
   validMoves() {
     const that = this;
     let output = [];
-    this.dDiff().forEach( (diff)=> {
+    //dDiff is the set of diagonal direction vectors
+    this.dDiff().forEach( (diff) => {
+      // moves(diff) is the set of legal spaces in a given direction
       output = output.concat(that.moves(diff));
     });
     return output;

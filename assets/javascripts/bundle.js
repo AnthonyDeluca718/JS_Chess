@@ -28644,6 +28644,8 @@
 	var Queen = __webpack_require__(323);
 	var King = __webpack_require__(324);
 	
+	// Array.prototype.include(obj) checks object equality. In particular arrays are
+	// objects in Javascript.
 	Array.prototype.has = function (el) {
 	  var stringEl = JSON.stringify(el);
 	
@@ -28656,7 +28658,14 @@
 	  return false;
 	};
 	
+	//The chessBoard maintains an array of 64 pieces. Each piece has a link to its board.
+	//The board enforces constraints on which moves are legal.
+	//The class contains the logic of whether a specific board is in check or if the game is over.
+	
 	var ChessBoard = function () {
+	
+	  // // // Constructor and Set Up Code // // //
+	
 	  function ChessBoard() {
 	    _classCallCheck(this, ChessBoard);
 	
@@ -28671,11 +28680,6 @@
 	  }
 	
 	  _createClass(ChessBoard, [{
-	    key: 'get',
-	    value: function get(pos) {
-	      return this.board[pos[0]][pos[1]];
-	    }
-	  }, {
 	    key: 'setUp',
 	    value: function setUp() {
 	      var whitePieces = this.whitePieces;
@@ -28756,6 +28760,33 @@
 	      this.whitePieces = whitePieces;
 	      this.blackPieces = blackPieces;
 	    }
+	
+	    // // // Helper Methods // // //
+	
+	    //gets the piece at the given position. Used to simplify the code
+	
+	  }, {
+	    key: 'get',
+	    value: function get(pos) {
+	      return this.board[pos[0]][pos[1]];
+	    }
+	  }, {
+	    key: 'findKing',
+	    value: function findKing(color) {
+	      var pieces = void 0;
+	      if (color === "black") {
+	        pieces = this.blackPieces;
+	      } else {
+	        pieces = this.whitePieces;
+	      }
+	
+	      for (var i = 0; i < pieces.length; i++) {
+	        var piece = pieces[i];
+	        if (piece.type === "king" && piece.color === color) {
+	          return piece;
+	        }
+	      }
+	    }
 	  }, {
 	    key: 'makePiece',
 	    value: function makePiece(color, pos, type) {
@@ -28774,121 +28805,13 @@
 	          return new Bishop(color, this, pos);
 	      }
 	    }
-	  }, {
-	    key: 'dup',
-	    value: function dup() {
-	      var newBoard = new ChessBoard();
 	
-	      var pos = void 0,
-	          color = void 0,
-	          type = void 0,
-	          newPiece = void 0;
+	    // // // Moving Pieces and Castling // // //
 	
-	      this.whitePieces.concat(this.blackPieces).forEach(function (piece) {
-	        pos = piece.pos;
-	        color = piece.color;
-	        type = piece.type;
-	        newPiece = newBoard.makePiece(color, pos, type);
-	        newBoard.board[pos[0]][pos[1]] = newPiece;
-	        if (color === "white") {
-	          newBoard.whitePieces.push(newPiece);
-	        } else {
-	          newBoard.blackPieces.push(newPiece);
-	        }
-	      });
-	      return newBoard;
-	    }
-	  }, {
-	    key: 'inCheck',
-	    value: function inCheck(color) {
-	      var pieces = void 0;
-	      if (color === "white") {
-	        pieces = this.blackPieces;
-	      } else {
-	        pieces = this.whitePieces;
-	      }
+	    //We attempt to move the piece from start to finish.
+	    //If the move is illegal because we move into check we return -1.
+	    //If the piece cannot legally move to the finish we return -2 (ex bishop trying to move vertical).
 	
-	      var kingPos = this.findKing(color).pos;
-	
-	      for (var i = 0; i < pieces.length; i++) {
-	        if (pieces[i].validMoves().has(kingPos)) {
-	          return true;
-	        }
-	      }
-	      return false;
-	    }
-	  }, {
-	    key: 'moveIntoCheck',
-	    value: function moveIntoCheck(start, finish, color) {
-	      var newBoard = this.dup();
-	      newBoard.testMove(start, finish);
-	      return newBoard.inCheck(color);
-	    }
-	  }, {
-	    key: 'checkmate',
-	    value: function checkmate(color) {
-	      var that = this;
-	      if (!this.inCheck(color)) {
-	        return false;
-	      }
-	
-	      var pieces = void 0;
-	      if (color === "white") {
-	        pieces = this.whitePieces;
-	      } else {
-	        pieces = this.blackPieces;
-	      }
-	
-	      for (var i = 0; i < pieces.length; i++) {
-	        var piece = pieces[i];
-	        var moves = piece.validMoves();
-	        var start = piece.pos;
-	
-	        for (var j = 0; j < moves.length; j++) {
-	          if (!that.moveIntoCheck(start, moves[j], color)) {
-	            return false;
-	          }
-	        }
-	      }
-	
-	      return true;
-	    }
-	  }, {
-	    key: 'checkStatus',
-	    value: function checkStatus(color) {
-	      var that = this;
-	      var inCheck = this.inCheck(color);
-	      var noLegalMoves = true;
-	
-	      var pieces = void 0;
-	      if (color === "white") {
-	        pieces = this.whitePieces;
-	      } else {
-	        pieces = this.blackPieces;
-	      }
-	
-	      for (var i = 0; i < pieces.length; i++) {
-	        var piece = pieces[i];
-	        var moves = piece.validMoves();
-	        var start = piece.pos;
-	
-	        for (var j = 0; j < moves.length; j++) {
-	          if (!that.moveIntoCheck(start, moves[j], color)) {
-	            noLegalMoves = false;
-	          }
-	        }
-	      }
-	
-	      if (noLegalMoves && inCheck) {
-	        return "checkmate";
-	      } else if (noLegalMoves) {
-	        return "stalemate";
-	      } else if (inCheck) {
-	        return "check";
-	      } else {
-	        return false;
-	      }
-	    }
 	  }, {
 	    key: 'movePiece',
 	    value: function movePiece(start, finish, color) {
@@ -28927,6 +28850,12 @@
 	      piece.updatePos(finish);
 	      return 1;
 	    }
+	
+	    //Same as a normal move except we do not test for check and pawn promotion.
+	    //We use this method to test for moving into check.
+	    //To do this we duplicate the board, make the test move, and then check if the
+	    //player is in check.
+	
 	  }, {
 	    key: 'testMove',
 	    value: function testMove(start, finish) {
@@ -28948,23 +28877,9 @@
 	
 	      piece.updatePos(finish);
 	    }
-	  }, {
-	    key: 'findKing',
-	    value: function findKing(color) {
-	      var pieces = void 0;
-	      if (color === "black") {
-	        pieces = this.blackPieces;
-	      } else {
-	        pieces = this.whitePieces;
-	      }
 	
-	      for (var i = 0; i < pieces.length; i++) {
-	        var piece = pieces[i];
-	        if (piece.type === "king" && piece.color === color) {
-	          return piece;
-	        }
-	      }
-	    }
+	    //the castle function handles both castling long and short
+	
 	  }, {
 	    key: 'castle',
 	    value: function castle(color, castleType) {
@@ -29036,6 +28951,141 @@
 	
 	      return 1;
 	    }
+	
+	    // // // Code Associated with Check // // //
+	
+	    //In order to test if we are in check we use the following procedure:
+	    //  -duplicate the board
+	    //  -make the proposed move without testing for check
+	    //  -check if the active player's king is in check on the resulting board
+	
+	
+	    //This is a deep duplication
+	
+	  }, {
+	    key: 'dup',
+	    value: function dup() {
+	      var newBoard = new ChessBoard();
+	
+	      var pos = void 0,
+	          color = void 0,
+	          type = void 0,
+	          newPiece = void 0;
+	
+	      this.whitePieces.concat(this.blackPieces).forEach(function (piece) {
+	        pos = piece.pos;
+	        color = piece.color;
+	        type = piece.type;
+	        newPiece = newBoard.makePiece(color, pos, type);
+	        newBoard.board[pos[0]][pos[1]] = newPiece;
+	        if (color === "white") {
+	          newBoard.whitePieces.push(newPiece);
+	        } else {
+	          newBoard.blackPieces.push(newPiece);
+	        }
+	      });
+	      return newBoard;
+	    }
+	  }, {
+	    key: 'inCheck',
+	    value: function inCheck(color) {
+	      var pieces = void 0;
+	      if (color === "white") {
+	        pieces = this.blackPieces;
+	      } else {
+	        pieces = this.whitePieces;
+	      }
+	
+	      var kingPos = this.findKing(color).pos;
+	
+	      for (var i = 0; i < pieces.length; i++) {
+	        if (pieces[i].validMoves().has(kingPos)) {
+	          return true;
+	        }
+	      }
+	      return false;
+	    }
+	
+	    //Tests if a proposed move moves into check
+	
+	  }, {
+	    key: 'moveIntoCheck',
+	    value: function moveIntoCheck(start, finish, color) {
+	      var newBoard = this.dup();
+	      newBoard.testMove(start, finish);
+	      return newBoard.inCheck(color);
+	    }
+	  }, {
+	    key: 'checkmate',
+	    value: function checkmate(color) {
+	      var that = this;
+	      if (!this.inCheck(color)) {
+	        return false;
+	      }
+	
+	      var pieces = void 0;
+	      if (color === "white") {
+	        pieces = this.whitePieces;
+	      } else {
+	        pieces = this.blackPieces;
+	      }
+	
+	      for (var i = 0; i < pieces.length; i++) {
+	        var piece = pieces[i];
+	        var moves = piece.validMoves();
+	        var start = piece.pos;
+	
+	        for (var j = 0; j < moves.length; j++) {
+	          if (!that.moveIntoCheck(start, moves[j], color)) {
+	            return false;
+	          }
+	        }
+	      }
+	
+	      return true;
+	    }
+	
+	    //Determines if a color is checkmated, in check, or stalemated.
+	
+	  }, {
+	    key: 'checkStatus',
+	    value: function checkStatus(color) {
+	      var that = this;
+	      var inCheck = this.inCheck(color);
+	      var noLegalMoves = true;
+	
+	      var pieces = void 0;
+	      if (color === "white") {
+	        pieces = this.whitePieces;
+	      } else {
+	        pieces = this.blackPieces;
+	      }
+	
+	      for (var i = 0; i < pieces.length; i++) {
+	        var piece = pieces[i];
+	        var moves = piece.validMoves();
+	        var start = piece.pos;
+	
+	        for (var j = 0; j < moves.length; j++) {
+	          if (!that.moveIntoCheck(start, moves[j], color)) {
+	            noLegalMoves = false;
+	          }
+	        }
+	      }
+	
+	      if (noLegalMoves && inCheck) {
+	        return "checkmate";
+	      } else if (noLegalMoves) {
+	        return "stalemate";
+	      } else if (inCheck) {
+	        return "check";
+	      } else {
+	        return false;
+	      }
+	    }
+	
+	    // // // Random Set Up // // //
+	
 	  }, {
 	    key: 'randSetUp',
 	    value: function randSetUp() {
@@ -29069,7 +29119,7 @@
 	      var frontArr = ["pawn", "pawn", "pawn", "bishop", "bishop", "bishop", "knight", "knight", "knight", "rook"];
 	      var backArr = ["pawn", "bishop", "knight", "rook", "queen"];
 	
-	      //random Front Row
+	      //Random Front Row
 	      for (var i = 0; i < 8; i++) {
 	        num1 = Math.floor(10 * Math.random());
 	        num2 = Math.floor(10 * Math.random());
@@ -29082,7 +29132,7 @@
 	        blackPieces.push(piece2);
 	      }
 	
-	      //random Back row
+	      //Random Back row
 	      [0, 1, 2, 3, 5, 6, 7].forEach(function (i) {
 	
 	        num1 = Math.floor(5 * Math.random());
@@ -29112,6 +29162,8 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	//Nullpieces represesnt empty spaces on the board
 	
 	var NullPiece = function () {
 	  function NullPiece() {
@@ -29314,6 +29366,7 @@
 	      var possibleMoves = [[row + 1, col + 2], [row + 1, col - 2], [row - 1, col + 2], [row - 1, col - 2], [row + 2, col + 1], [row + 2, col - 1], [row - 2, col + 1], [row - 2, col - 1]];
 	
 	      return possibleMoves.filter(function (e) {
+	        //empty spaces or those containing enemy pieces will satisfy space.color != this.color
 	        return that.onBoard(e) && _this2.board.get(e).color != _this2.color;
 	      });
 	    }
@@ -29354,7 +29407,9 @@
 	    value: function validMoves() {
 	      var that = this;
 	      var output = [];
+	      //dDiff is the set of diagonal direction vectors
 	      this.dDiff().forEach(function (diff) {
+	        // moves(diff) is the set of legal spaces in a given direction
 	        output = output.concat(that.moves(diff));
 	      });
 	      return output;
@@ -29374,6 +29429,10 @@
 
 	"use strict";
 	
+	// This function is used by pieces that can move an arbitrary number of spaces in
+	// a single direction, such as Bishops and Queens. The output is all legal moves
+	// in a given input direction
+	
 	var moves = function moves(direct) {
 	  var drow = direct[0];
 	  var dcol = direct[1];
@@ -29382,6 +29441,7 @@
 	  var vect = [this.pos[0] + drow, this.pos[1] + dcol];
 	
 	  var bool = true;
+	
 	  while (bool) {
 	    if (!this.onBoard(vect)) {
 	      bool = false;
@@ -29433,7 +29493,10 @@
 	    value: function validMoves() {
 	      var that = this;
 	      var output = [];
+	
+	      //hvDiff are the horizontal+vertical direction vectors
 	      this.hvDiff().forEach(function (diff) {
+	        // moves(diff) is the set of legal spaces in a given direction
 	        output = output.concat(that.moves(diff));
 	      });
 	      return output;
@@ -29477,7 +29540,9 @@
 	    value: function validMoves() {
 	      var that = this;
 	      var output = [];
+	      //hvDiff and dDiff are the sets of horizontal and vertical direction vectors 
 	      this.hvDiff().concat(this.dDiff()).forEach(function (diff) {
+	        // moves(diff) is the set of legal spaces in a given direction
 	        output = output.concat(that.moves(diff));
 	      });
 	      return output;
@@ -29530,6 +29595,7 @@
 	      var possibleMoves = [[row + 1, col], [row + 1, col + 1], [row + 1, col - 1], [row - 1, col], [row - 1, col + 1], [row - 1, col - 1], [row, col + 1], [row, col - 1]];
 	
 	      return possibleMoves.filter(function (e) {
+	        //empty spaces or those containing enemy pieces will satisfy space.color != this.color
 	        return that.onBoard(e) && _this2.board.get(e).color != _this2.color;
 	      });
 	    }

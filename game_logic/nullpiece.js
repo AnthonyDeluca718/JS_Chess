@@ -1,3 +1,5 @@
+//Nullpieces represesnt empty spaces on the board
+
 class NullPiece {
 
   constructor() {

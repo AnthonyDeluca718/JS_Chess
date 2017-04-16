@@ -24,6 +24,7 @@ class King extends Piece {
 
     return(
       possibleMoves.filter( e=> {
+        //empty spaces or those containing enemy pieces will satisfy space.color != this.color
         return(
           that.onBoard(e) && this.board.get(e).color != this.color
         );
