@@ -262,7 +262,7 @@ class ChessBoard {
     //promotion
     if( piece.type==="pawn" && (finish[0] === 7 || finish[0] === 0) ) {
 
-      let pieces = (this.currentPlayer === "white" ? (this.whitePieces) : (this.blackPieces) );
+      let pieces = (piece.color === "white" ? (this.whitePieces) : (this.blackPieces) );
       let ind = pieces.indexOf(piece);
       pieces.splice(ind,1);
 
@@ -290,6 +290,19 @@ class ChessBoard {
 
     this.board[finish[0]][finish[1]] = piece;
     this.board[start[0]][start[1]] = new NullPiece();
+
+    //promotion
+    if( piece.type==="pawn" && (finish[0] === 7 || finish[0] === 0) ) {
+
+      let pieces = (this.currentPlayer === "white" ? (this.whitePieces) : (this.blackPieces) );
+      let ind = pieces.indexOf(piece);
+      pieces.splice(ind,1);
+
+      piece = new Queen(piece.color, this, finish);
+      this.board[finish[0]][finish[1]] = piece;
+      pieces.push(piece);
+    }
+
     piece.updatePos(finish);
   }
 
@@ -320,7 +333,7 @@ class ChessBoard {
     let pieces, enemyPieces, row;
 
     if (color === "black") {
-      row =0;
+      row = 0;
       enemyPieces = this.whitePieces;
     } else {
       row = 7;

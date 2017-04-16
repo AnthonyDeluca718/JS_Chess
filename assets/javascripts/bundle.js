@@ -71,8 +71,8 @@
 	document.addEventListener('DOMContentLoaded', function () {
 	  var root = document.getElementById('root');
 	  _reactModal2.default.setAppElement(document.body);
-	  var store = (0, _store2.default)();
-	  window.store = store;
+	  var store = (0, _store2.default)(); //testing purposes
+	  window.store = store; //testing purposes
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 	});
 
@@ -28916,7 +28916,7 @@
 	      //promotion
 	      if (piece.type === "pawn" && (finish[0] === 7 || finish[0] === 0)) {
 	
-	        var pieces = this.currentPlayer === "white" ? this.whitePieces : this.blackPieces;
+	        var pieces = piece.color === "white" ? this.whitePieces : this.blackPieces;
 	        var ind = pieces.indexOf(piece);
 	        pieces.splice(ind, 1);
 	
@@ -28945,6 +28945,19 @@
 	
 	      this.board[finish[0]][finish[1]] = piece;
 	      this.board[start[0]][start[1]] = new NullPiece();
+	
+	      //promotion
+	      if (piece.type === "pawn" && (finish[0] === 7 || finish[0] === 0)) {
+	
+	        var pieces = this.currentPlayer === "white" ? this.whitePieces : this.blackPieces;
+	        var ind = pieces.indexOf(piece);
+	        pieces.splice(ind, 1);
+	
+	        piece = new Queen(piece.color, this, finish);
+	        this.board[finish[0]][finish[1]] = piece;
+	        pieces.push(piece);
+	      }
+	
 	      piece.updatePos(finish);
 	    }
 	  }, {
