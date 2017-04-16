@@ -1,7 +1,6 @@
 ## JavaScript Chess
 
-[Live Site]
-(https://anthonydeluca718.github.io/JS_Chess/)
+[Live Site](https://anthonydeluca718.github.io/JS_Chess/)
 
 ### Display: Standard Rules
 
