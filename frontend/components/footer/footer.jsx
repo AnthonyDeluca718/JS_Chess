@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Purely decorative
 class Footer extends React.Component {
 
   constructor(props) {

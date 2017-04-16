@@ -1,0 +1,47 @@
+// We include a CSS reset and a clearfix
+// We define color variables used throughout the application
+// We also load the other scss stylesheets corresponding to the react components
+
+// // // CSS Reset // // //
+html, body, header, nav, h1, a, ul, li,
+strong, main, section, img, div, h2, p,
+form, fieldset, label, input, textarea,
+button, article, footer, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  box-sizing: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: sans-serif;
+  background: #F7F5F2;
+}
+
+img {
+  display: block;
+}
+
+// // // Clearfix // // //
+
+.group::after {
+  content: " ";
+  clear: both;
+  display: block;
+}
+
+@import 'board';
+@import 'reset';
+@import 'greeting';
+@import 'footer';

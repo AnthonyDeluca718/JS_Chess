@@ -1,6 +1,7 @@
 import React from 'react';
 
-// {"Checkmate. " + (this.props.currentPlayer==="white" ? "Black" : "White") + " wins!"}
+//Receive the current player and whether the game is over.
+//Displays an appropriate message above the board
 class Greeting extends React.Component {
   constructor(props) {
     super(props);

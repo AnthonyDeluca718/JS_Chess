@@ -1,5 +1,4 @@
 import { createStore } from 'redux';
-// const Reducer = require('./reducers/reducer');
 import Reducer from './reducers/reducer';
 
 import merge from 'lodash/merge';

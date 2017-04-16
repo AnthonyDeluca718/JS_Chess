@@ -1,0 +1,41 @@
+.reset-button {
+  margin: 30px auto 30px auto;
+  display: block;
+  padding: 10px;
+  background: red;
+  color: white;
+  border-radius: 6px;
+  border: 1px solid black;
+  width: 140px;
+  text-align: center;
+}
+
+.reset-button:hover {
+  cursor: pointer;
+}
+
+.reset-modal-message {
+  text-align: center;
+}
+
+.modal-error > text {
+  display: block;
+  font-size: 28px;
+  color: red;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.reset-buttons {
+  margin: 40px auto 30px auto;
+  text-align: center;
+  display: block;
+}
+
+.reset-buttons li {
+  float: center;
+  display: inline-block;
+  margin: 0 10px;
+}

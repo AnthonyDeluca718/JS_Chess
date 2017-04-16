@@ -54,6 +54,26 @@ The compiled CSS file is included in the repo.
   - check if the active player's king is in check on the resulting board
 
 #### Frontend: React
-
+- The entry file for webpack is located in chess.js. This file renders the react content to the DOM.
+- The application is written using the React-Redux. The full application state is contained in the store:
+  - Chess Board
+  - Current Player
+  - Move Buffer
+  - ActiveSquare (square selected by the player)
+  - Errors
+  - GameOver (variable saying if the game is over)
+- Board
+  - Displays an array of 64 Square React Components
+  - Each square is passed a function that send a dispatch to the reducer when that square is selected by the player
+- Greeting
+  - Receives the currentPlayer and gameOver variables.
+  - Displays an appropriate message above the board.
+- Reset
+  - Reset and randomizer buttons
+  - Stateless, props can dispatch "RESET_GAME" and "RANDOM_GAME" to the reducer
+- Footer
+  - Purely decorative
 
 #### SCSS Structure
+- The entry file is located in ./assets/SCSS/application.scss, the compiled file is located in ./assets/stylesheets/application.css
+- The CSS for the modals is defined in the files for the react components that display them

@@ -68,11 +68,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	//entry file for webpack. Render the react content to the DOM. 
 	document.addEventListener('DOMContentLoaded', function () {
 	  var root = document.getElementById('root');
 	  _reactModal2.default.setAppElement(document.body);
-	  var store = (0, _store2.default)(); //testing purposes
-	  window.store = store; //testing purposes
+	  var store = (0, _store2.default)();
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 	});
 
@@ -23179,18 +23179,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	Array.prototype.has = function (el) {
-	  var stringEl = JSON.stringify(el);
-	
-	  for (var i = 0; i < this.length; i++) {
-	    if (JSON.stringify(this[i]) === stringEl) {
-	      return true;
-	    }
-	  }
-	
-	  return false;
-	};
-	
+	// Each of the 64 squares is passed a dispatch function as a prop by its parent board
 	var Board = function (_React$Component) {
 	  _inherits(Board, _React$Component);
 	
@@ -23212,7 +23201,8 @@
 	          width: '350px',
 	          height: '115px',
 	          border: '1px solid red',
-	          background: 'white'
+	          background: 'white',
+	          overflow: 'hidden'
 	        }, overlay: {}
 	      }
 	    };
@@ -23229,6 +23219,9 @@
 	    value: function openModal() {
 	      this.setState({ modalOpen: true });
 	    }
+	
+	    //Helper method used to create the dispatches passed to the props
+	
 	  }, {
 	    key: 'createDispatch',
 	    value: function createDispatch(i, j) {
@@ -25301,6 +25294,8 @@
 	  "black queen": 9819
 	};
 	
+	//Square receive the piece to display, its color and whether the square is selected
+	
 	var Square = function (_React$Component) {
 	  _inherits(Square, _React$Component);
 	
@@ -25343,6 +25338,8 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
+	//The Piece class we use here is different from the class used in game-logic.
+	//This class is a simple struct with no member functions
 	var Piece = function Piece(color, type, position) {
 	  _classCallCheck(this, Piece);
 	
@@ -25412,7 +25409,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// {"Checkmate. " + (this.props.currentPlayer==="white" ? "Black" : "White") + " wins!"}
+	//Receive the current player and whether the game is over.
+	//Displays an appropriate message above the board
 	var Greeting = function (_React$Component) {
 	  _inherits(Greeting, _React$Component);
 	
@@ -25524,6 +25522,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	//Stateless Component
+	//Can dispatch "RESET_GAME" and "RANDOM_GAME" to the reducer
 	var Reset = function (_React$Component) {
 	  _inherits(Reset, _React$Component);
 	
@@ -25551,7 +25551,8 @@
 	          width: '350px',
 	          height: '115px',
 	          border: '1px solid red',
-	          background: '#DDA0DD'
+	          background: '#DDA0DD',
+	          overflow: 'hidden'
 	        }, overlay: {}
 	      }
 	    };
@@ -25680,6 +25681,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	//Purely decorative
 	var Footer = function (_React$Component) {
 	  _inherits(Footer, _React$Component);
 	
@@ -25755,8 +25757,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var chessBoard = new _chess_board2.default();
-	// const Reducer = require('./reducers/reducer');
-	
 	chessBoard.setUp();
 	
 	var initialState = {
@@ -25797,6 +25797,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// Array.prototype.include(obj) checks object equality. In particular arrays are
+	// objects in Javascript.
 	Array.prototype.has = function (el) {
 	  var stringEl = JSON.stringify(el);
 	
@@ -25809,6 +25811,11 @@
 	  return false;
 	};
 	
+	//When the board receives a postion:
+	//If the buffer is empty and the postion represent the active player's piece the move is added to the buffer.
+	//If the buffer already has a position and a different piece is selected the new position is added to the buffer and the old one is removed.
+	//If the second is a legal move for the piece represented by the first position the board attempts to make the move. If the move is rejected the second pos is removed from the buffer.
+	//After a move is executed the buffer is reset to []
 	var Reducer = function Reducer(state, action) {
 	
 	  switch (action.type) {
@@ -25830,7 +25837,6 @@
 	      }
 	
 	      //Handling logic
-	
 	      if (pieces.map(function (piece) {
 	        return piece.pos;
 	      }).has(pos)) {

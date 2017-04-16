@@ -1,5 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
+
+//Stateless Component
+//Can dispatch "RESET_GAME" and "RANDOM_GAME" to the reducer
 class Reset extends React.Component {
 
   constructor(props) {
@@ -23,7 +26,8 @@ class Reset extends React.Component {
           width: '350px',
           height: '115px',
           border: '1px solid red',
-          background: '#DDA0DD'
+          background: '#DDA0DD',
+          overflow: 'hidden'
         }, overlay: {
 
         }

@@ -11,7 +11,6 @@ const mapStateToProps = (state) => {
   })
 };
 
-
 const mapDispatchToProps = function(dispatch, ownProps) {
   return({
     sendPosition: (pos) => dispatch({

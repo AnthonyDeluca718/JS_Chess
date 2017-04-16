@@ -1,7 +1,8 @@
 import merge from 'lodash/merge';
 import ChessBoard from '../../game_logic/chess_board';
 
-
+// Array.prototype.include(obj) checks object equality. In particular arrays are
+// objects in Javascript.
 Array.prototype.has = function(el) {
   let stringEl = JSON.stringify(el);
 
@@ -14,6 +15,11 @@ Array.prototype.has = function(el) {
   return false;
 }
 
+//When the board receives a postion:
+//If the buffer is empty and the postion represent the active player's piece the move is added to the buffer.
+//If the buffer already has a position and a different piece is selected the new position is added to the buffer and the old one is removed.
+//If the second is a legal move for the piece represented by the first position the board attempts to make the move. If the move is rejected the second pos is removed from the buffer.
+//After a move is executed the buffer is reset to []
 const Reducer = function(state, action) {
 
   switch(action.type) {
@@ -35,7 +41,6 @@ const Reducer = function(state, action) {
       }
 
       //Handling logic
-
       if (pieces.map( (piece) => {return(piece.pos)}).has(pos) ) {
         oldState.moveBuffer = pos;
         oldState.activeSquare = pos;

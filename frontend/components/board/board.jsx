@@ -3,18 +3,8 @@ import Modal from 'react-modal';
 import Square from '../square/square';
 import Piece from '../../piece';
 
-Array.prototype.has = function(el) {
-  let stringEl = JSON.stringify(el);
 
-  for(let i=0; i< this.length; i++) {
-    if(JSON.stringify(this[i]) === stringEl) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
+// Each of the 64 squares is passed a dispatch function as a prop by its parent board
 class Board extends React.Component {
   constructor(props) {
     super(props);
@@ -32,8 +22,8 @@ class Board extends React.Component {
           height: '115px',
           border: '1px solid red',
           background: 'white',
+          overflow: 'hidden'
         }, overlay: {
-
         }
       },
     }
@@ -47,6 +37,7 @@ class Board extends React.Component {
     this.setState({modalOpen: true});
   }
 
+  //Helper method used to create the dispatches passed to the props
   createDispatch(i,j) {
     return (
       () => this.props.sendPosition([i,j])

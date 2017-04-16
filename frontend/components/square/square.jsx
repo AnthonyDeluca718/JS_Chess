@@ -15,12 +15,11 @@ const utfHash = {
   "black queen": 9819
 };
 
+//Square receive the piece to display, its color and whether the square is selected
 class Square extends React.Component {
   constructor(props) {
     super(props);
   }
-
-
 
   render() {
     let active = this.props.active;
