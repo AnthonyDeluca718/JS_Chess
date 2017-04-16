@@ -37,14 +37,14 @@ The compiled CSS file is included in the repo.
 - Object Oriented Design: Board and Pieces. The The design is flexible. Adding random pieces only required adding a random set up function and setting up the frontend randomize button. More modes could be easily added
 
 #### Game Logic
--All pieces (Bishops, Rooks, etc) inherit from the Piece Class
--Empty Board spaces are occupied by null pieces which also inherits from the Piece Class
--The chessboard contains an array of 64 pieces, each of those pieces stores a reference to its board
--The board sets itself up, enforces that moves are legal and determines if the game is over
--In order to test if we are in check we use the following procedure:
-  -duplicate the board
-  -make the proposed move without testing for check
-  -check if the active player's king is in check on the resulting board
+- All pieces (Bishops, Rooks, etc) inherit from the Piece Class
+- Empty Board spaces are occupied by null pieces which also inherits from the Piece Class
+- The chessboard contains an array of 64 pieces, each of those pieces stores a reference to its board
+- The board sets itself up, enforces that moves are legal and determines if the game is over
+- In order to test if we are in check we use the following procedure:
+  - duplicate the board
+  - make the proposed move without testing for check
+  - check if the active player's king is in check on the resulting board
 
 #### Frontend: React
 
