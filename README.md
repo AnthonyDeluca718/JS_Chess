@@ -25,9 +25,9 @@ However some rarely occurring rules are not implemented:
 
 ### Running the App Locally
 From the root directory run:
--npm install
--webpack
--view index.html in your browser
+- npm install
+- webpack
+- view index.html in your browser
 
 The compiled CSS file is included in the repo.
 
